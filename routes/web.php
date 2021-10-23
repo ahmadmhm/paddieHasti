@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AdminAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Route::group(['namespace'=>'App\Http\Controllers\Admin','middleware'=>'auth'],function(){
+    Route::prefix('panel')->group(function(){
+        Route::name('panel.')->group(function(){
+            Route::get('/dashboard','PanelController@dashboard')->name('dashboard');
+            Route::resource('admins','AdminController');
+            Route::resource('users','UserController');
+            Route::resource('product_categories','ProductCategoryController')->only('index','create','store','destroy');
+            Route::resource('products','ProductController');
+            Route::resource('pasmands','PasmandController');
+            Route::resource('banners','BannerController');
+            Route::resource('stories','StoryController');
+            Route::resource('article_categories','ArticleCategoryController')->only('index','create','store','destroy');
+            Route::resource('articles','ArticleController');
+
+        });
+
+    });
 });
+
+Route::any('logout', 'App\Http\Controllers\Auth\LoginController@logout')->name('logout');
+
+Auth::routes();
