@@ -1,12 +1,14 @@
 <?php
 namespace App\Repositories\Admin;
 
+use App\Http\Traits\FileUploadTrait;
 use App\Models\Padideh\Product;
 use App\Models\Padideh\ProductCategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class ProductRepo {
+    use FileUploadTrait;
 
     public function all(){
         $products = Product::latest()->paginate(15);
@@ -25,21 +27,24 @@ class ProductRepo {
 
     public function store($request)
     {
+        $image = null;
+        if ($request->hasFile('image')) {
+            $image = $this->uploadFile($request->image, Product::UPLOAD_URL, 'product_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+        }
+
         $product = Product::create([
             'name' => $request->name,
             'price' => $request->price,
             'link' => $request->link,
             'description' => $request->description,
-            'image' => $request->file('image')->store('images/products','local'),
+            'image' => $image,
             'is_active' => $request->input('is_active') ? true : false,
         ]);
         $product->categories()->attach(
             $request->category_id
         );
 
-        return \redirect()->route('panel.products.index')->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+       
     }
     public function show($product)
     {
@@ -57,32 +62,29 @@ class ProductRepo {
     }
 
     public function update($request,$product){
-        if(!empty($request->file('image'))){
-            $image =$request->file('image')->store('images/products','local');
-        }else{
-            $image = $product->image;
+        $image = null;
+        if ($request->hasFile('image')) {
+            $this->removeFile('storage', Product::SHOW_URL.$product->image);
+            $image = $this->uploadFile($request->image, Product::UPLOAD_URL, 'product_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
-        $product = $product->update([
+
+        return $product->update([
             'name' => $request->name,
             'price' => $request->price,
             'link' => $request->link,
             'description' => $request->description,
-            'image' =>  $image,
+            'image' =>  $image ?? $product->image,
             'is_active' => $request->input('is_active') ? true : false,
         ]);
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+       
     }
 
 
     public function destroy($product)
     {
-        File::delete($product->image);
-        $product->delete();
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        $this->removeFile('storage', Product::SHOW_URL.$product->image);
+        return $product->delete();
+       
     }
 
 

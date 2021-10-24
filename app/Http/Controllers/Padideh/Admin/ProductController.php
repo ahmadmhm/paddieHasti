@@ -28,7 +28,12 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        return $this->productRepo->store($request);
+        $products = $this->productRepo->store($request);
+        if($products){
+            return redirect()->route('panel.products.index')->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
 
@@ -46,13 +51,22 @@ class ProductController extends Controller
 
     public function update(Request $request,Product $product)
     {
-        return $this->productRepo->update($request,$product);
-
+        $product = $this->productRepo->update($request,$product);
+        if($product){
+            return redirect()->back()->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
 
     public function destroy(Product $product)
     {
-        return $this->productRepo->destroy($product);
+        $result = $this->productRepo->destroy($product);
+        if($result){
+            return redirect()->back()->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 }

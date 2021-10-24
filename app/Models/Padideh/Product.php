@@ -15,6 +15,10 @@ class Product extends Model
     protected $guarded=[];
     protected $table="products";
 
+    const UPLOAD_URL = 'products/images/';
+    const SHOW_URL = '/storage/products/images/';
+
+
     public function categories()
     {
         return $this->belongsToMany(ProductCategory::class,'product_category','product_id','category_id');
@@ -48,7 +52,7 @@ class Product extends Model
     }
     public function getImage()
     {
-        return $this->image ?: 'previewImage.gif';
+        return $this->image ? self::SHOW_URL.$this->image : 'previewImage.gif';
     }
 
     public function get_category(){
