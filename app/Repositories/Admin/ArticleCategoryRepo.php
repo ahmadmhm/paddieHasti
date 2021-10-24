@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Admin;
 
-use App\Models\ArticleCategory;
+use App\Models\Padideh\ArticleCategory;
 
 class ArticleCategoryRepo {
 
@@ -31,12 +31,12 @@ class ArticleCategoryRepo {
             'parent_id' => $request->parent_id,
             'image' => $image
         ]);
-       
+
         return \redirect()->route('panel.article_categories.index')->with([
             'success' => 'با موفقیت ثبت شد'
         ]);
     }
-  
+
     public function destroy($article_category)
     {
         $article_category->delete();

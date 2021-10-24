@@ -20,7 +20,7 @@ class UserController extends Controller
     public function index()
     {
         $users = $this->userRepo->all();
-        return view('admin.users.index')->with([
+        return view('Padideh.users.index')->with([
             'users' => $users
         ]);
     }

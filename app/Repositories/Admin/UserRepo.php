@@ -1,6 +1,6 @@
 <?php
 namespace App\Repositories\Admin;
-use App\Models\User;
+use App\Models\Padideh\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepo {
@@ -11,7 +11,7 @@ class UserRepo {
 
     public function create()
     {
-        return view('admin.users.create');
+        return view('Padideh.users.create');
     }
 
     public function store($request)
@@ -27,13 +27,13 @@ class UserRepo {
     }
     public function show($user)
     {
-        return view('admin.users.show')->with([
+        return view('Padideh.users.show')->with([
             'user' => $user
         ]);
     }
     public function edit($user)
     {
-        return view('admin.users.edit')->with([
+        return view('Padideh.users.edit')->with([
             'user' => $user
         ]);
     }

@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Admin;
 
-use App\Models\Banner;
+use App\Models\Padideh\Banner;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\File;
@@ -40,7 +40,7 @@ class BannerRepo {
             'image' => $image,
             'is_active' => $request->input('is_active') ? true : false,
         ]);
-       
+
         return \redirect()->route('panel.banners.index')->with([
             'success' => 'با موفقیت ثبت شد'
         ]);
@@ -59,7 +59,7 @@ class BannerRepo {
     }
 
     public function update($request,$banner){
-      
+
         if(!empty($request->file('image')))
         {
             $image = $request->file('image')->store('images/banners/images','local');

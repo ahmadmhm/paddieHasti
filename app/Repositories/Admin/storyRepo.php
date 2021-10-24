@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Admin;
 
-use App\Models\Story;
+use App\Models\Padideh\Story;
 use Illuminate\Support\Facades\File;
 
 class StoryRepo {
@@ -25,7 +25,7 @@ class StoryRepo {
             'image' => $request->file('image')->store('images/story','local'),
             'is_active' => $request->input('is_active') ? true : false,
         ]);
-       
+
         return \redirect()->route('panel.stories.index')->with([
             'success' => 'با موفقیت ثبت شد'
         ]);

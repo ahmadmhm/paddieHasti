@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Padideh;
 
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -13,7 +13,7 @@ class Pasmand extends Model
     use SoftDeletes;
     protected $guarded=[];
     protected $table="pasmands";
-    
+
     public static $types = [
         'rial' => 'ریال',
         'toman' => 'تومان'

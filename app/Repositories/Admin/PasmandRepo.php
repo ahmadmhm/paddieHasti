@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Admin;
 
-use App\Models\Pasmand;
+use App\Models\Padideh\Pasmand;
 use App\Models\Product;
 use App\Models\ProductCategory;
 use Illuminate\Support\Facades\File;
@@ -36,8 +36,8 @@ class PasmandRepo {
             'icon' => $image,
             'is_active' => $request->input('is_active') ? true : false,
         ]);
-        
-        
+
+
         return \redirect()->route('panel.pasmands.index')->with([
             'success' => 'با موفقیت ثبت شد'
         ]);

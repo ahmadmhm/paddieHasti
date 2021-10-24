@@ -1,6 +1,6 @@
 <?php
 namespace App\Repositories\Admin;
-use App\Models\Admin;
+use App\Models\Padideh\Admin;
 use Illuminate\Support\Facades\Hash;
 
 class AdminRepo {

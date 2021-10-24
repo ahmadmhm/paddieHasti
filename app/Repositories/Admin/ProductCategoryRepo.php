@@ -1,7 +1,7 @@
 <?php
 namespace App\Repositories\Admin;
 
-use App\Models\ProductCategory;
+use App\Models\Padideh\ProductCategory;
 
 class ProductCategoryRepo {
 
@@ -27,7 +27,7 @@ class ProductCategoryRepo {
             'parent_id' => $request->family,
         ]);
     }
-   
+
 
     public function destroy($product_category)
     {

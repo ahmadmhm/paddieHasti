@@ -1,8 +1,8 @@
 <?php
 namespace App\Repositories\Admin;
 
-use App\Models\Product;
-use App\Models\ProductCategory;
+use App\Models\Padideh\Product;
+use App\Models\Padideh\ProductCategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
@@ -36,7 +36,7 @@ class ProductRepo {
         $product->categories()->attach(
             $request->category_id
         );
-        
+
         return \redirect()->route('panel.products.index')->with([
             'success' => 'با موفقیت ثبت شد'
         ]);

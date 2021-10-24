@@ -1,8 +1,8 @@
 <?php
 namespace App\Repositories\Admin;
 
-use App\Models\Article;
-use App\Models\ArticleCategory;
+use App\Models\Padideh\Article;
+use App\Models\Padideh\ArticleCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
@@ -42,12 +42,12 @@ class ArticleRepo {
         $article->article_categories()->attach(
             $request->category_id
         );
-       
+
         return \redirect()->route('panel.articles.index')->with([
             'success' => 'با موفقیت ثبت شد'
         ]);
     }
-  
+
     public function show($article)
     {
         return view('admin.articles.show')->with([

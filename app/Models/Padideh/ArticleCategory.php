@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Padideh;
 
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -53,7 +53,7 @@ class ArticleCategory extends Model
         }
         return null;
     }
-    
+
     public function getImage()
     {
         return $this->image ?: 'previewImage.gif';
@@ -72,6 +72,6 @@ class ArticleCategory extends Model
         return $this->belongsTo(Article::class);
     }
 
- 
+
 
 }

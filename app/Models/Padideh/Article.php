@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Padideh;
 
 use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -60,5 +60,5 @@ class Article extends Model
         return $this->image ?: 'previewImage.gif';
     }
 
-    
+
 }
