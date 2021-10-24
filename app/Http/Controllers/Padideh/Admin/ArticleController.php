@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Article;
+use App\Models\Padideh\Article;
 use App\Repositories\Admin\ArticleRepo;
 use Illuminate\Http\Request;
 

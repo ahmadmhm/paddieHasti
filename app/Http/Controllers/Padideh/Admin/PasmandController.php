@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Pasmand;
+use App\Models\Padideh\Pasmand;
 use App\Repositories\Admin\pasmandRepo;
 use Illuminate\Http\Request;
 

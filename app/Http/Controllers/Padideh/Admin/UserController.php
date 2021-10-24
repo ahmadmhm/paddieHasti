@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Padideh\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Admins\UpdateUserRequest;
 use App\Http\Requests\Admin\Admins\UserRequest;
-use App\Models\User;
+use App\Models\Padideh\User;
 use App\Repositories\Admin\UserRepo;
 use Illuminate\Http\Request;
 

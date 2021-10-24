@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Padideh\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Admins\AdminRequest;
 use App\Http\Requests\Admin\Admins\UpdateAdminRequest;
-use App\Models\Admin;
+use App\Models\Padideh\Admin;
 use App\Repositories\Admin\AdminRepo;
 use Illuminate\Http\Request;
 

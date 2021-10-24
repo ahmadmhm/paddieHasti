@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Story;
+use App\Models\Padideh\Story;
 use App\Repositories\Admin\StoryRepo;
 use Illuminate\Http\Request;
 

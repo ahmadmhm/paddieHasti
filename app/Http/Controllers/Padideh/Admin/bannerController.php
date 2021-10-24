@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Banner;
+use App\Models\Padideh\Banner;
 use App\Repositories\Admin\BannerRepo;
 use Illuminate\Http\Request;
 

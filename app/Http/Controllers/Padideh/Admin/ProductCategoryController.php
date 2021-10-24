@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\ProductCategory;
+use App\Models\Padideh\ProductCategory;
 use App\Repositories\Admin\ProductCategoryRepo;
 use Illuminate\Http\Request;
 
