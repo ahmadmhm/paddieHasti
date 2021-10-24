@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Padideh\WasteResource;
 use App\Repositories\Admin\PasmandRepo;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 class WasteController extends Controller
 {
