@@ -14,6 +14,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
+Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padideh.api.'],function(){
+
+    //auth
+    Route::group(['prefix' => '/auth', ],function()
+    {
+        Route::post('verification', 'LoginController@verification');
+        Route::post('login', 'LoginController@login');
+        Route::post('register', 'LoginController@register');
+    });
+    Route::group(['middleware' => ['auth:api'], ''],function() {
+        //auth
+        Route::post('auth/logout', 'LoginController@logout');
+
+        //profile
+        Route::get('user/init', 'UserController@init');
+        Route::put('user/profile/update', 'UserController@updateProfile');
+        Route::put('user/firebase/update', 'UserController@updateFirebase');
+
+    });
 });

@@ -44,6 +44,11 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'api' => [
+            'driver' => 'passport',
+            'provider' => 'users',
+            'hash' => false,
+        ],
     ],
 
     /*
@@ -68,6 +73,10 @@ return [
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Padideh\Admin::class,
+        ],
+        'users' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Padideh\User::class,
         ],
 
         // 'users' => [
