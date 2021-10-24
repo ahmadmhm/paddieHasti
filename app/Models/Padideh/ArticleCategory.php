@@ -12,6 +12,9 @@ class ArticleCategory extends Model
     use HasFactory;
     use SoftDeletes;
 
+    const UPLOAD_URL = 'article_category/images/';
+    const SHOW_URL = '/storage/article_category/images/';
+
     protected $table="article_categories";
     protected $guarded=[];
 

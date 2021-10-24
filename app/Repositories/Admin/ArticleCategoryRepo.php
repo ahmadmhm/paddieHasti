@@ -1,9 +1,11 @@
 <?php
 namespace App\Repositories\Admin;
 
+use App\Http\Traits\FileUploadTrait;
 use App\Models\Padideh\ArticleCategory;
 
 class ArticleCategoryRepo {
+    use FileUploadTrait;
 
     public function all(){
         $article_categories = ArticleCategory::latest()->paginate(15);
@@ -22,27 +24,25 @@ class ArticleCategoryRepo {
 
     public function store($request)
     {
-        $image=null;
-        if(!empty($request->file('image'))){
-            $image =  $request->file('image')->store('Images/article_category','local');
+        $image = null;
+        if ($request->hasFile('image')) {
+            $image = $this->uploadFile($request->image, ArticleCategory::UPLOAD_URL, 'article_category_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
-        ArticleCategory::create([
+
+        return ArticleCategory::create([
             'name' => $request->name,
             'parent_id' => $request->parent_id,
             'image' => $image
         ]);
 
-        return \redirect()->route('panel.article_categories.index')->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+      
     }
 
     public function destroy($article_category)
     {
-        $article_category->delete();
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        $this->removeFile('storage', ArticleCategory::SHOW_URL.$article_category->image);
+        return $article_category->delete();
+        
     }
 
 

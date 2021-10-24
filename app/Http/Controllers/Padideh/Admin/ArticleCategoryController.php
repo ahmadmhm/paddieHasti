@@ -29,14 +29,23 @@ class ArticleCategoryController extends Controller
 
     public function store(Request $request)
     {
-        return $this->articleCategoryRepo->store($request);
-
+        $article_category = $this->articleCategoryRepo->store($request);
+        if($article_category){
+            return redirect()->route('panel.article_categories.index')->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
 
     public function destroy(ArticleCategory $article_category)
     {
-        return $this->articleCategoryRepo->destroy($article_category);
+        $result = $this->articleCategoryRepo->destroy($article_category);
+        if($result){
+            return redirect()->back()->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
 
     }
 }
