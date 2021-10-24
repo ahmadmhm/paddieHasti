@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ArticleCategory;
@@ -19,14 +19,14 @@ class ArticleCategoryController extends Controller
         return $this->ArticleCategoryRepo->all();
     }
 
-    
+
     public function create()
     {
         return $this->ArticleCategoryRepo->create();
 
     }
 
-    
+
     public function store(Request $request)
     {
         return $this->ArticleCategoryRepo->store($request);

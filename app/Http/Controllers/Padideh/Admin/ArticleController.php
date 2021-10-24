@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Article;
@@ -15,47 +15,47 @@ public $articleCategoryRepo;
    {
        $this->ArticleRepo = $articleRepo;
    }
-    
+
     public function index()
     {
         return $this->ArticleRepo->all();
     }
 
-  
+
     public function create()
     {
         return $this->ArticleRepo->create();
 
     }
 
-    
+
     public function store(Request $request)
     {
         return $this->ArticleRepo->store($request);
 
     }
 
-    
+
     public function show(Article $article)
     {
         return $this->ArticleRepo->show($article);
 
     }
 
-    
+
     public function edit(Article $article)
     {
         return $this->ArticleRepo->edit($article);
 
     }
 
-    
+
     public function update(Request $request,Article $article)
     {
         return $this->ArticleRepo->update($request,$article);
     }
 
-    
+
     public function destroy(Article $article)
     {
         return $this->ArticleRepo->destroy($article);

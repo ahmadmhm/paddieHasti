@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Banner;
@@ -20,7 +20,7 @@ class bannerController extends Controller
 
     }
 
-    
+
     public function create()
     {
         return $this->BannerRepo->create();
@@ -32,27 +32,27 @@ class bannerController extends Controller
         return $this->BannerRepo->store($request);
     }
 
-   
+
     public function show(Banner $banner)
     {
         return $this->BannerRepo->show($banner);
     }
 
-    
+
     public function edit(Banner $banner)
     {
         return $this->BannerRepo->edit($banner);
 
     }
 
-    
+
     public function update(Request $request,Banner $banner)
     {
         return $this->BannerRepo->update($request,$banner);
 
     }
 
-    
+
     public function destroy(Banner $banner)
     {
         return $this->BannerRepo->destroy($banner);

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin;
@@ -13,32 +13,23 @@ class AdminAuthController extends Controller
 
     public function login()
     {
-        return view('login');
+        return view('Padideh.auth.login');
     }
     public function postLogin(Request $request)
     {
         $request->validate([
-            'username' => 'required|regex:/^09\d{9}$/',
+            'mobile' => 'required|regex:/^09\d{9}$/',
             'password' => 'required',
         ]);
 
-       
-        $admin = Admin::where('mobile', $request->mobile)->where('password',Hash::make($request->password))->first();
-
-        if ($admin) {
-            if ($admin->access_status == 0) {
-                return back()->withErrors([
-                    'حساب کاربری شما غیر فعال است لطفا با پشتیبانی تماس بگیرید'
-                ]);
-            }
-            Auth::guard()->login($admin, true);
-            return redirect()->route('dashboard');
+        if (Auth::guard('admin')->attempt(['mobile' => $request->mobile, 'password' =>$request->password , 'access_status' => 1], true)) {
+            return redirect()->route('panel.dashboard');
         } else{
             return back()->withErrors([
                 'حساب کاربری شما غیر فعال است لطفا با پشتیبانی تماس بگیرید'
             ]);
         }
-      
+
     }
 
     public function authenticate(Request $request){

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pasmand;
@@ -14,13 +14,13 @@ class PasmandController extends Controller
     {
         $this->PasmandRepo = $pasmandRepo;
     }
-    
+
     public function index()
     {
         return $this->PasmandRepo->all();
     }
 
-    
+
     public function create()
     {
         return $this->PasmandRepo->create();

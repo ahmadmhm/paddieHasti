@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\ProductCategory;
@@ -17,7 +17,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         return  $this->ProductCategoryRepo->all();
-       
+
     }
 
 

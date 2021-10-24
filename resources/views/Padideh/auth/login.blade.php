@@ -22,7 +22,7 @@
 
 <body>
     <div class="accountbg"></div>
-   
+
     <div class="wrapper-page">
 
         <div class="container">
@@ -35,13 +35,13 @@
                                     <img src="assets/images/logo-dark.png" class="mt-3" alt="" height="26"></a>
                                 <p class="text-muted w-75 mx-auto mb-4 mt-4">Enter your email address and password to access admin panel.</p>
                             </div>
-                            <form method="POST" action="{{ route('login') }}">
+                            <form method="POST" action="{{ route('login.post') }}">
                                 @csrf
                                 <div class="form-group">
                                     <div class="col-12">
                                         <label for="email">نام کاربری</label>
-                                        <input class="form-control @error('email') is-invalid @enderror" type="text" required="" name="email" id="email" placeholder="نام کاربری" value="{{ old('email') }}" required >
-                                        @error('email')
+                                        <input class="form-control @error('mobile') is-invalid @enderror" type="text" required="" name="mobile" id="email" placeholder="نام کاربری" value="{{ old('mobile') }}" required >
+                                        @error('mobile')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -60,7 +60,7 @@
                                     </div>
                                 </div>
 
-                            
+
                                 <div class="form-group row">
                                     <div class="col-md-6 offset-md-4">
                                         <div class="form-check">

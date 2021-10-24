@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Product;
@@ -19,19 +19,19 @@ class ProductController extends Controller
         return $this->ProductRepo->all();
     }
 
-    
+
     public function create()
     {
         return $this->ProductRepo->create();
     }
 
-   
+
     public function store(Request $request)
     {
         return $this->ProductRepo->store($request);
     }
 
-    
+
     public function show(Product $product)
     {
         return $this->ProductRepo->show($product);
@@ -43,14 +43,14 @@ class ProductController extends Controller
 
     }
 
-    
+
     public function update(Request $request,Product $product)
     {
         return $this->ProductRepo->update($request,$product);
 
     }
 
-    
+
     public function destroy(Product $product)
     {
         return $this->ProductRepo->destroy($product);

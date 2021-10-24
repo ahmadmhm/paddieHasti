@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Admins\UpdateUserRequest;
@@ -16,7 +16,7 @@ class UserController extends Controller
     {
         $this->UserRepo = $UserRepo;
     }
-    
+
     public function index()
     {
         $users = $this->UserRepo->all();
@@ -25,14 +25,14 @@ class UserController extends Controller
         ]);
     }
 
-    
+
     public function create()
     {
         return $this->UserRepo->create();
 
     }
 
-   
+
     public function store(UserRequest $request)
     {
         $this->UserRepo->store($request);
@@ -41,21 +41,21 @@ class UserController extends Controller
         ]);
     }
 
-    
+
     public function show(User $user)
     {
         return $this->UserRepo->show($user);
 
     }
 
-    
+
     public function edit(User $user)
     {
         return $this->UserRepo->edit($user);
 
     }
 
-    
+
     public function update(UpdateUserRequest $request,User $user)
     {
         $this->UserRepo->update($request,$user);
@@ -64,7 +64,7 @@ class UserController extends Controller
         ]);
     }
 
-    
+
     public function destroy(User $user)
     {
         $this->UserRepo->destroy($user);
