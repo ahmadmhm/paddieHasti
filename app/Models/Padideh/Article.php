@@ -13,6 +13,11 @@ class Article extends Model
     protected $guarded=[];
     protected $table="articles";
 
+    
+    const UPLOAD_URL = 'articles/images/';
+    const SHOW_URL = '/storage/articles/images/';
+
+
     public function article_categories()
     {
         return $this->belongsToMany(ArticleCategory::class,'article_category','article_id','category_id');
@@ -57,7 +62,7 @@ class Article extends Model
 
     public function getImage()
     {
-        return $this->image ?: 'previewImage.gif';
+        return $this->image ? self::SHOW_URL.$this->image : 'previewImage.gif';
     }
 
 

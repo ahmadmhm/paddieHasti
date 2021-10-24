@@ -31,8 +31,12 @@ public $articleCategoryRepo;
 
     public function store(Request $request)
     {
-        return $this->articleRepo->store($request);
-
+        $article = $this->articleRepo->store($request);
+        if($article){
+            return redirect()->route('panel.articles.index')->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
 
@@ -52,13 +56,23 @@ public $articleCategoryRepo;
 
     public function update(Request $request,Article $article)
     {
-        return $this->articleRepo->update($request,$article);
+        $article = $this->articleRepo->update($request,$article);
+        if($article){
+            return redirect()->back()->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
 
     public function destroy(Article $article)
     {
-        return $this->articleRepo->destroy($article);
+        $result = $this->articleRepo->destroy($article);
+        if($result){
+            return redirect()->back()->with([
+                'success' => 'با موفقیت حذف شد'
+            ]);
+        }
 
     }
 }

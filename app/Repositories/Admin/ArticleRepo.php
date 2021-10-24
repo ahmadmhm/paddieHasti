@@ -1,12 +1,14 @@
 <?php
 namespace App\Repositories\Admin;
 
+use App\Http\Traits\FileUploadTrait;
 use App\Models\Padideh\Article;
 use App\Models\Padideh\ArticleCategory;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ArticleRepo {
+    use FileUploadTrait;
 
     public function all(){
         $articles = Article::latest()->paginate(15);
@@ -29,6 +31,10 @@ class ArticleRepo {
         if(!empty($request->file('image'))){
             $image =  $request->file('image')->store('Images/articles','local');
         }
+        $image = null;
+        if ($request->hasFile('image')) {
+            $image = $this->uploadFile($request->image, Article::UPLOAD_URL, 'article_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+        }
         $article = Article::create([
             'title' => $request->title,
             'short_description' => $request->short_description,
@@ -42,10 +48,8 @@ class ArticleRepo {
         $article->article_categories()->attach(
             $request->category_id
         );
-
-        return \redirect()->route('panel.articles.index')->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        return $article;
+      
     }
 
     public function show($article)
@@ -65,17 +69,19 @@ class ArticleRepo {
     }
 
     public function update($request,$article){
-        if(!empty($request->file('image'))){
-            $image =$request->file('image')->store('images/articles','local');
-        }else{
-            $image = $article->image;
+   
+        $image = null;
+        if ($request->hasFile('image')) {
+            $this->removeFile('storage', Article::SHOW_URL.$article->image);
+            $image = $this->uploadFile($request->image, Article::UPLOAD_URL, 'article_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
+        
         $article->update([
             'title' => $request->title,
             'short_description' => $request->short_description,
             'full_description' => $request->full_description,
             'published' => $request->published,
-            'image' =>  $image,
+            'image' =>  $image ?? $article->image,
             'can_comment' =>  $request->can_comment,
             'can_rate' => $request->can_rate,
             'user_id' => Auth::id(),
@@ -84,19 +90,15 @@ class ArticleRepo {
         $article->article_categories()->sync(
             $request->category_id
         );
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        
     }
 
 
     public function destroy($article)
     {
-        File::delete($article->image);
-        $article->delete();
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت حذف شد'
-        ]);
+        $this->removeFile('storage', Article::SHOW_URL.$article->image);
+        return $article->delete();
+       
     }
 
 
