@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories\Admin;
 
+use App\Http\Traits\FileUploadTrait;
 use App\Models\Padideh\Pasmand;
 use App\Models\Padideh\Product;
 use App\Models\Padideh\ProductCategory;
@@ -8,7 +9,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class PasmandRepo {
-
+    use FileUploadTrait;
     public function all(){
         $pasmands = Pasmand::latest()->paginate(15);
         return view('Padideh.pasmands.index')->with([
@@ -23,23 +24,19 @@ class PasmandRepo {
 
     public function store($request)
     {
-        $image = null;
-        if(!empty($request->file('icon'))){
-            $image =$request->file('icon')->store('images/pasmands/icon','local');
+        $icon = null;
+        if ($request->hasFile('icon')) {
+            $icon = $this->uploadFile($request->icon, Pasmand::UPLOAD_URL, 'waste_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
-        $pasmands = Pasmand::create([
+
+        return Pasmand::create([
             'name' => $request->input('name'),
             'vahed' => $request->input('vahed'),
             'buy_price' => $request->input('buy_price'),
             'sale_price' => $request->input('sale_price'),
             'description' => $request->input('description'),
-            'icon' => $image,
+            'icon' => $icon,
             'is_active' => $request->input('is_active') ? true : false,
-        ]);
-
-
-        return \redirect()->route('panel.pasmands.index')->with([
-            'success' => 'با موفقیت ثبت شد'
         ]);
     }
     public function show($pasmand)
@@ -56,34 +53,35 @@ class PasmandRepo {
     }
 
     public function update($request,$pasmand){
-        if(!empty($request->file('icon'))){
-            $image =$request->file('icon')->store('images/pasmands/icon','local');
-        }else{
-            $image = $pasmand->image;
+        $icon = null;
+        if ($request->hasFile('icon')) {
+            $this->removeFile('storage', Pasmand::SHOW_URL.$pasmand->icon);
+            $icon = $this->uploadFile($request->icon, Pasmand::UPLOAD_URL, 'waste_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
-        $pasmand->update([
+
+        return $pasmand->update([
             'name' => $request->input('name'),
             'vahed' => $request->input('vahed'),
             'buy_price' => $request->input('buy_price'),
             'sale_price' => $request->input('sale_price'),
             'description' => $request->input('description'),
-            'icon' =>  $image,
+            'icon' =>  $icon ?? $pasmand->icon,
             'is_active' => $request->input('is_active') ? true : false,
-        ]);
-        return \redirect()->route('panel.pasmands.index')->with([
-            'success' => 'با موفقیت ثبت شد'
         ]);
     }
 
 
     public function destroy($pasmand)
     {
-        File::delete($pasmand->image);
-        $pasmand->delete();
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        $this->removeFile('storage', Pasmand::SHOW_URL.$pasmand->icon);
+        //File::delete($pasmand->image);
+        return $pasmand->delete();
     }
 
+    //apis
 
+    public function getWastes($request)
+    {
+        return Pasmand::query()->active()->get();
+    }
 }

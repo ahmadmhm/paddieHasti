@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Padideh\Api;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Petyar\Api\UpdateUserRequest;
+use App\Http\Requests\Padideh\Api\UpdateUserRequest;
 use App\Http\Resources\Padideh\UserResource;
 use App\Http\Traits\FileUploadTrait;
 

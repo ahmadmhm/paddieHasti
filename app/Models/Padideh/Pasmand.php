@@ -14,6 +14,12 @@ class Pasmand extends Model
     protected $guarded=[];
     protected $table="pasmands";
 
+    const ACTIVE = 1;
+    const INACTIVE = 0;
+
+    const UPLOAD_URL = 'wastes/images/';
+    const SHOW_URL = '/storage/wastes/images/';
+
     public static $types = [
         'rial' => 'ریال',
         'toman' => 'تومان'
@@ -48,7 +54,7 @@ class Pasmand extends Model
     }
     public function getImage()
     {
-        return $this->icon ?: 'previewImage.gif';
+        return $this->icon ? self::SHOW_URL.$this->icon : 'previewImage.gif';
     }
 
     public function getTypeTitle(){
@@ -59,4 +65,10 @@ class Pasmand extends Model
         }
     }
 
+
+    //scopes
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', self::ACTIVE);
+    }
 }

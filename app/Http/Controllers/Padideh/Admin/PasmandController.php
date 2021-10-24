@@ -30,8 +30,13 @@ class PasmandController extends Controller
 
     public function store(Request $request)
     {
-        return $this->pasmandRepo->store($request);
+        $waste = $this->pasmandRepo->store($request);
+        if ($waste) {
 
+            return \redirect()->route('panel.pasmands.index')->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
     /**
@@ -66,7 +71,13 @@ class PasmandController extends Controller
      */
     public function update(Request $request,Pasmand $pasmand)
     {
-        return $this->pasmandRepo->update($request,$pasmand);
+        $waste = $this->pasmandRepo->update($request,$pasmand);
+        if ($waste) {
+
+            return \redirect()->route('panel.pasmands.index')->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
     /**
@@ -77,6 +88,11 @@ class PasmandController extends Controller
      */
     public function destroy(Pasmand $pasmand)
     {
-        return $this->pasmandRepo->destroy($pasmand);
+        $result = $this->pasmandRepo->destroy($pasmand);
+        if ($result) {
+            return \redirect()->back()->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 }

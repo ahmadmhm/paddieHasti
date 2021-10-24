@@ -32,5 +32,8 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
         Route::put('user/profile/update', 'UserController@updateProfile');
         Route::put('user/firebase/update', 'UserController@updateFirebase');
 
+        //wastes
+        Route::get('wastes', 'WasteController@wasteList');
+
     });
 });

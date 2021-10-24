@@ -75,7 +75,7 @@
                         <div class="col-3">
                             <div class="col-12 col-lg-4 form-group">
                                 <label for="image">
-                                    <img id="preview-image-before-upload" src="{{getImageSrc($pasmand->getImage() , 'medium')}}" style="max-width: 200px" alt="preview image" >
+                                    <img id="preview-image-before-upload" src="{{$pasmand->getImage()}}" style="max-width: 200px" alt="preview image" >
                                     <input type="file" name="icon" class="form-control"  id="icon">
                                 </label>
                             </div>

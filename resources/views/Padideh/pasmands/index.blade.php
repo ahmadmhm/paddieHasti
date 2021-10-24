@@ -32,7 +32,7 @@
                         <tr>
                             <td>{{$key+1}}</td>
                             <td>
-                                <img src="{{ getImageSrc($pasmand->getImage() , 'small') }}" width="30px" height="30" class="rounded-circle" alt="">    
+                                <img src="{{$pasmand->getImage()}}" width="30px" height="30" class="rounded-circle" alt="">
                             </td>
                             <td>{{$pasmand->name ?: '---'}}</td>
                             <td>
@@ -57,7 +57,7 @@
                         </tr>
 
                         @endforeach
-                
+
                     </tbody>
                 </table>
             </div>
