@@ -1,10 +1,12 @@
 <?php
 namespace App\Repositories\Admin;
 
+use App\Http\Traits\FileUploadTrait;
 use App\Models\Padideh\Story;
 use Illuminate\Support\Facades\File;
 
 class StoryRepo {
+    use FileUploadTrait;
 
     public function all(){
         $stories = Story::latest()->paginate(15);
@@ -20,9 +22,13 @@ class StoryRepo {
 
     public function store($request)
     {
+        $image = null;
+        if ($request->hasFile('image')) {
+            $image = $this->uploadFile($request->image, Story::UPLOAD_URL, 'story_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+        }
         Story::create([
             'title' => $request->title,
-            'image' => $request->file('image')->store('images/story','local'),
+            'image' => $image,
             'is_active' => $request->input('is_active') ? true : false,
         ]);
 
@@ -44,29 +50,25 @@ class StoryRepo {
     }
 
     public function update($request,$story){
-        if(!empty($request->file('image'))){
-            $image =$request->file('image')->store('images/products','local');
-        }else{
-            $image = $story->image;
+        $image = null;
+        if ($request->hasFile('image')) {
+            $this->removeFile('storage', Story::SHOW_URL.$story->image);
+            $image = $this->uploadFile($request->image, Story::UPLOAD_URL, 'story_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
-        $product = $story->update([
+        return $story->update([
             'title' => $request->title,
-            'image' =>  $image,
+            'image' =>  $image ?? $story->image,
             'is_active' => $request->input('is_active') ? true : false,
         ]);
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        
     }
 
 
     public function destroy($story)
     {
-        File::delete($story->image);
-        $story->delete();
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت حذف شد'
-        ]);
+        $this->removeFile('storage', Story::SHOW_URL.$story->image);
+        return $story->delete();
+        
     }
 
 

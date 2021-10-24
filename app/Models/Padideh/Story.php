@@ -14,6 +14,11 @@ class Story extends Model
 
     protected $guarded=[];
     protected $table ="stories";
+
+    const UPLOAD_URL = 'stories/images/';
+    const SHOW_URL = '/storage/stories/images/';
+
+
     public function get_status()
     {
         try{
@@ -43,6 +48,6 @@ class Story extends Model
     }
     public function getImage()
     {
-        return $this->image ?: 'previewImage.gif';
+        return $this->image ? Self::SHOW_URL.$this->image : 'previewImage.gif';
     }
 }

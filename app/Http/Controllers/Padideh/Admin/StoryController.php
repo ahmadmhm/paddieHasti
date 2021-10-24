@@ -49,14 +49,24 @@ class StoryController extends Controller
 
     public function update(Request $request,Story $story)
     {
-        return $this->storyRepo->update($request,$story);
+        $story = $this->storyRepo->update($request,$story);
+        if($story){
+            return \redirect()->back()->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
 
     }
 
 
     public function destroy(Story $story)
     {
-        return $this->storyRepo->destroy($story);
+        $result = $this->storyRepo->destroy($story);
+        if($result){
+            return \redirect()->back()->with([
+                'success' => 'با موفقیت حذف شد'
+            ]);
+        }
 
     }
 }
