@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function index()
     {
         $admins = $this->AdminRepo->all();
-        return view('admin.admins.index')->with([
+        return view('Padideh.admin.admins.index')->with([
             'admins' => $admins
         ]);
     }

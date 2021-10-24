@@ -12,31 +12,31 @@ class ArticleCategoryController extends Controller
    public $articleCategoryRepo;
    public function __construct(ArticleCategoryRepo $articleCategoryRepo)
    {
-       $this->ArticleCategoryRepo = $articleCategoryRepo;
+       $this->articleCategoryRepo = $articleCategoryRepo;
    }
     public function index()
     {
-        return $this->ArticleCategoryRepo->all();
+        return $this->articleCategoryRepo->all();
     }
 
 
     public function create()
     {
-        return $this->ArticleCategoryRepo->create();
+        return $this->articleCategoryRepo->create();
 
     }
 
 
     public function store(Request $request)
     {
-        return $this->ArticleCategoryRepo->store($request);
+        return $this->articleCategoryRepo->store($request);
 
     }
 
 
     public function destroy(ArticleCategory $article_category)
     {
-        return $this->ArticleCategoryRepo->destroy($article_category);
+        return $this->articleCategoryRepo->destroy($article_category);
 
     }
 }

@@ -13,52 +13,52 @@ class ArticleController extends Controller
 public $articleCategoryRepo;
    public function __construct(ArticleRepo $articleRepo)
    {
-       $this->ArticleRepo = $articleRepo;
+       $this->articleRepo = $articleRepo;
    }
 
     public function index()
     {
-        return $this->ArticleRepo->all();
+        return $this->articleRepo->all();
     }
 
 
     public function create()
     {
-        return $this->ArticleRepo->create();
+        return $this->articleRepo->create();
 
     }
 
 
     public function store(Request $request)
     {
-        return $this->ArticleRepo->store($request);
+        return $this->articleRepo->store($request);
 
     }
 
 
     public function show(Article $article)
     {
-        return $this->ArticleRepo->show($article);
+        return $this->articleRepo->show($article);
 
     }
 
 
     public function edit(Article $article)
     {
-        return $this->ArticleRepo->edit($article);
+        return $this->articleRepo->edit($article);
 
     }
 
 
     public function update(Request $request,Article $article)
     {
-        return $this->ArticleRepo->update($request,$article);
+        return $this->articleRepo->update($request,$article);
     }
 
 
     public function destroy(Article $article)
     {
-        return $this->ArticleRepo->destroy($article);
+        return $this->articleRepo->destroy($article);
 
     }
 }

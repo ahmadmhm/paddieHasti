@@ -12,51 +12,51 @@ class StoryController extends Controller
     public $storyRepo;
     public function __construct(StoryRepo $storyRepo)
     {
-        $this->StoryRepo = $storyRepo;
+        $this->storyRepo = $storyRepo;
     }
     public function index()
     {
-        return $this->StoryRepo->all();
+        return $this->storyRepo->all();
 
     }
 
 
     public function create()
     {
-        return $this->StoryRepo->create();
+        return $this->storyRepo->create();
 
     }
 
 
     public function store(Request $request)
     {
-        return $this->StoryRepo->store($request);
+        return $this->storyRepo->store($request);
 
     }
 
     public function show(Story $story)
     {
-        return $this->StoryRepo->show($story);
+        return $this->storyRepo->show($story);
 
     }
 
 
     public function edit(Story $story)
     {
-        return $this->StoryRepo->edit($story);
+        return $this->storyRepo->edit($story);
 
     }
 
     public function update(Request $request,Story $story)
     {
-        return $this->StoryRepo->update($request,$story);
+        return $this->storyRepo->update($request,$story);
 
     }
 
 
     public function destroy(Story $story)
     {
-        return $this->StoryRepo->destroy($story);
+        return $this->storyRepo->destroy($story);
 
     }
 }

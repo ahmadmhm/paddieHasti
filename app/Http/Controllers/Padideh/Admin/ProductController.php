@@ -12,47 +12,47 @@ class ProductController extends Controller
     public $productRepo;
     public function __construct(ProductRepo $productRepo)
     {
-        $this->ProductRepo = $productRepo;
+        $this->productRepo = $productRepo;
     }
     public function index()
     {
-        return $this->ProductRepo->all();
+        return $this->productRepo->all();
     }
 
 
     public function create()
     {
-        return $this->ProductRepo->create();
+        return $this->productRepo->create();
     }
 
 
     public function store(Request $request)
     {
-        return $this->ProductRepo->store($request);
+        return $this->productRepo->store($request);
     }
 
 
     public function show(Product $product)
     {
-        return $this->ProductRepo->show($product);
+        return $this->productRepo->show($product);
     }
 
     public function edit(Product $product)
     {
-        return $this->ProductRepo->edit($product);
+        return $this->productRepo->edit($product);
 
     }
 
 
     public function update(Request $request,Product $product)
     {
-        return $this->ProductRepo->update($request,$product);
+        return $this->productRepo->update($request,$product);
 
     }
 
 
     public function destroy(Product $product)
     {
-        return $this->ProductRepo->destroy($product);
+        return $this->productRepo->destroy($product);
     }
 }

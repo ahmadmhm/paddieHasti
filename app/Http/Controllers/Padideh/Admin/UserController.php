@@ -14,12 +14,12 @@ class UserController extends Controller
     public $UserRepo;
     public function __construct(UserRepo $UserRepo)
     {
-        $this->UserRepo = $UserRepo;
+        $this->userRepo = $UserRepo;
     }
 
     public function index()
     {
-        $users = $this->UserRepo->all();
+        $users = $this->userRepo->all();
         return view('admin.users.index')->with([
             'users' => $users
         ]);
@@ -28,14 +28,14 @@ class UserController extends Controller
 
     public function create()
     {
-        return $this->UserRepo->create();
+        return $this->userRepo->create();
 
     }
 
 
     public function store(UserRequest $request)
     {
-        $this->UserRepo->store($request);
+        $this->userRepo->store($request);
         return \redirect()->route('panel.users.index')->with([
             'success' => 'با موفقیت ثبت شد'
         ]);
@@ -44,21 +44,21 @@ class UserController extends Controller
 
     public function show(User $user)
     {
-        return $this->UserRepo->show($user);
+        return $this->userRepo->show($user);
 
     }
 
 
     public function edit(User $user)
     {
-        return $this->UserRepo->edit($user);
+        return $this->userRepo->edit($user);
 
     }
 
 
     public function update(UpdateUserRequest $request,User $user)
     {
-        $this->UserRepo->update($request,$user);
+        $this->userRepo->update($request,$user);
         return \redirect()->route('panel.users.index')->with([
             'success' => 'با موفقیت ثبت شد'
         ]);
@@ -67,7 +67,7 @@ class UserController extends Controller
 
     public function destroy(User $user)
     {
-        $this->UserRepo->destroy($user);
+        $this->userRepo->destroy($user);
        return back()->with([
            'success' => 'با موفقیت حذف شذ',
        ]);

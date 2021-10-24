@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Pasmand;
-use App\Repositories\Admin\PasmandRepo;
+use App\Repositories\Admin\pasmandRepo;
 use Illuminate\Http\Request;
 
 class PasmandController extends Controller
@@ -12,25 +12,25 @@ class PasmandController extends Controller
     public $pasmandRepo;
     public function __construct(PasmandRepo $pasmandRepo)
     {
-        $this->PasmandRepo = $pasmandRepo;
+        $this->pasmandRepo = $pasmandRepo;
     }
 
     public function index()
     {
-        return $this->PasmandRepo->all();
+        return $this->pasmandRepo->all();
     }
 
 
     public function create()
     {
-        return $this->PasmandRepo->create();
+        return $this->pasmandRepo->create();
 
     }
 
 
     public function store(Request $request)
     {
-        return $this->PasmandRepo->store($request);
+        return $this->pasmandRepo->store($request);
 
     }
 
@@ -42,7 +42,7 @@ class PasmandController extends Controller
      */
     public function show(Pasmand $pasmand)
     {
-        return $this->PasmandRepo->show($pasmand);
+        return $this->pasmandRepo->show($pasmand);
     }
 
     /**
@@ -53,7 +53,7 @@ class PasmandController extends Controller
      */
     public function edit(Pasmand $pasmand)
     {
-        return $this->PasmandRepo->edit($pasmand);
+        return $this->pasmandRepo->edit($pasmand);
 
     }
 
@@ -66,7 +66,7 @@ class PasmandController extends Controller
      */
     public function update(Request $request,Pasmand $pasmand)
     {
-        return $this->PasmandRepo->update($request,$pasmand);
+        return $this->pasmandRepo->update($request,$pasmand);
     }
 
     /**
@@ -77,6 +77,6 @@ class PasmandController extends Controller
      */
     public function destroy(Pasmand $pasmand)
     {
-        return $this->PasmandRepo->destroy($pasmand);
+        return $this->pasmandRepo->destroy($pasmand);
     }
 }

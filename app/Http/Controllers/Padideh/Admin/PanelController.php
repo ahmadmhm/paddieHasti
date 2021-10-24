@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 class PanelController extends Controller
 {
     public function dashboard(){
-        return view('admin.dashboard');
+        return view('Padideh.dashboard');
     }
 }

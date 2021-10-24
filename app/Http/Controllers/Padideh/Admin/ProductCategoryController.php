@@ -12,23 +12,23 @@ class ProductCategoryController extends Controller
     public $productCategoryRepo;
     public function __construct(ProductCategoryRepo $productCategoryRepo)
     {
-        $this->ProductCategoryRepo = $productCategoryRepo;
+        $this->productCategoryRepo = $productCategoryRepo;
     }
     public function index()
     {
-        return  $this->ProductCategoryRepo->all();
+        return  $this->productCategoryRepo->all();
 
     }
 
 
     public function create()
     {
-        return $this->ProductCategoryRepo->create();
+        return $this->productCategoryRepo->create();
     }
 
     public function store(Request $request)
     {
-        $this->ProductCategoryRepo->store($request);
+        $this->productCategoryRepo->store($request);
         return redirect()->route('panel.product_categories.index')->with([
             'success' => 'با موفقیت ثبت شد'
         ]);
@@ -36,7 +36,7 @@ class ProductCategoryController extends Controller
 
     public function destroy(ProductCategory $product_category)
     {
-        $this->ProductCategoryRepo->destroy($product_category);
+        $this->productCategoryRepo->destroy($product_category);
         return back()->with([
             'success' => 'با موفقیت حذف شذ',
         ]);
