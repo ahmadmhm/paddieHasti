@@ -8,14 +8,14 @@ class StoryRepo {
 
     public function all(){
         $stories = Story::latest()->paginate(15);
-        return view('admin.stories.index')->with([
+        return view('Padideh.stories.index')->with([
             'stories' => $stories,
         ]);
     }
 
     public function create()
     {
-        return view('admin.stories.create');
+        return view('Padideh.stories.create');
     }
 
     public function store($request)
@@ -32,13 +32,13 @@ class StoryRepo {
     }
     public function show($story)
     {
-        return view('admin.stories.show')->with([
+        return view('Padideh.stories.show')->with([
             'story' => $story
         ]);
     }
     public function edit($story)
     {
-        return view('admin.stories.edit')->with([
+        return view('Padideh.stories.edit')->with([
             'story' => $story,
         ]);
     }

@@ -7,7 +7,7 @@ class ProductCategoryRepo {
 
     public function all(){
         $product_categories= ProductCategory::latest()->paginate(15);
-        return view('admin.product_categories.index')->with([
+        return view('Padideh.product_categories.index')->with([
             'product_categories' => $product_categories,
         ]);
     }
@@ -15,7 +15,7 @@ class ProductCategoryRepo {
     public function create()
     {
         $categories = ProductCategory::all();
-        return view('admin.product_categories.create')->with([
+        return view('Padideh.product_categories.create')->with([
             'categories' => $categories
         ]);
     }

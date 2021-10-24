@@ -23,20 +23,20 @@
                                     <label for="name">نام</label>
                                     <input type="text" name="name" class="form-control" value="{{old('name')}}" id="name">
                                 </div>
-                               
+
                                 <div class="col-12 col-lg-6 form-group">
-                                    
+
                                     <label for="vahed">واحد</label>
                                     <select name="vahed" id="vahed" class="form-control">
                                         <option value="">انتخاب واحد</option>
-                                        @foreach (App\Models\Pasmand::$types as $key=>$value)
+                                        @foreach (App\Models\Padideh\Pasmand::$types as $key=>$value)
                                         <option value="{{$key}}">{{$value}}</option>
                                         @endforeach
                                     </select>
-                                   
+
                                 </div>
                                 <div class="col-12 col-lg-6 form-group">
-                                    
+
                                     <label for="buy_price">قیمت خرید</label>
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" id="buy_price" name="buy_price" aria-label="buy_price" aria-describedby="basic-addon1">
@@ -44,10 +44,10 @@
                                           <span class="input-group-text" id="basic-addon1">تومان</span>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
                                 <div class="col-12 col-lg-6 form-group">
-                                    
+
                                     <label for="sale_price">قیمت فروش</label>
                                     <div class="input-group mb-3">
                                         <input type="text" class="form-control" id="sale_price" name="sale_price" aria-label="sale_price" aria-describedby="basic-addon1">
@@ -55,10 +55,10 @@
                                           <span class="input-group-text" id="basic-addon1">تومان</span>
                                         </div>
                                     </div>
-                                   
+
                                 </div>
-                                
-                                
+
+
                                 <div class="col-12 col-lg-12 form-group">
                                     <label for="description">توضیحات</label>
                                     <textarea name="description" id="" cols="30" class="form-control" rows="5"></textarea>
@@ -79,7 +79,7 @@
                                 </label>
                             </div>
                         </div>
-                     
+
 
                     </div>
                     <button type="submit" class="btn btn-success">ثبت محصول</button>
@@ -97,22 +97,22 @@
             $('#selectpicker').selectpicker()
 
             $(document).ready(function (e) {
-            
-            
+
+
             $('#icon').change(function(){
-                        
+
                 let reader = new FileReader();
-            
-                reader.onload = (e) => { 
-            
-                $('#preview-image-before-upload').attr('src', e.target.result); 
+
+                reader.onload = (e) => {
+
+                $('#preview-image-before-upload').attr('src', e.target.result);
                 }
-            
-                reader.readAsDataURL(this.files[0]); 
-            
+
+                reader.readAsDataURL(this.files[0]);
+
             });
-            
+
             });
-     
+
     </script>
 @endsection

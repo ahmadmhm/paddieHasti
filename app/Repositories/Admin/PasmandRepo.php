@@ -2,8 +2,8 @@
 namespace App\Repositories\Admin;
 
 use App\Models\Padideh\Pasmand;
-use App\Models\Product;
-use App\Models\ProductCategory;
+use App\Models\Padideh\Product;
+use App\Models\Padideh\ProductCategory;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
@@ -11,14 +11,14 @@ class PasmandRepo {
 
     public function all(){
         $pasmands = Pasmand::latest()->paginate(15);
-        return view('admin.pasmands.index')->with([
+        return view('Padideh.pasmands.index')->with([
             'pasmands' => $pasmands,
         ]);
     }
 
     public function create()
     {
-        return view('admin.pasmands.create');
+        return view('Padideh.pasmands.create');
     }
 
     public function store($request)
@@ -44,13 +44,13 @@ class PasmandRepo {
     }
     public function show($pasmand)
     {
-        return view('admin.pasmands.show')->with([
+        return view('Padideh.pasmands.show')->with([
             'pasmand' => $pasmand
         ]);
     }
     public function edit($pasmand)
     {
-        return view('admin.pasmands.edit')->with([
+        return view('Padideh.pasmands.edit')->with([
             'pasmand' => $pasmand,
         ]);
     }

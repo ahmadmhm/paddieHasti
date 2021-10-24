@@ -11,14 +11,14 @@ class BannerRepo {
 
     public function all(){
         $banners = Banner::latest()->paginate(15);
-        return view('admin.banners.index')->with([
+        return view('Padideh.banners.index')->with([
             'banners' => $banners,
         ]);
     }
 
     public function create()
     {
-        return view('admin.banners.create');
+        return view('Padideh.banners.create');
     }
 
     public function store($request)
@@ -47,13 +47,13 @@ class BannerRepo {
     }
     public function show($banner)
     {
-        return view('admin.banners.show')->with([
+        return view('Padideh.banners.show')->with([
             'banner' => $banner
         ]);
     }
     public function edit($banner)
     {
-        return view('admin.banners.edit')->with([
+        return view('Padideh.banners.edit')->with([
             'banner' => $banner,
         ]);
     }

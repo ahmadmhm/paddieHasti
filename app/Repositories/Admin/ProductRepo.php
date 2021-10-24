@@ -10,7 +10,7 @@ class ProductRepo {
 
     public function all(){
         $products = Product::latest()->paginate(15);
-        return view('admin.products.index')->with([
+        return view('Padideh.products.index')->with([
             'products' => $products,
         ]);
     }
@@ -18,7 +18,7 @@ class ProductRepo {
     public function create()
     {
         $categories = ProductCategory::all();
-        return view('admin.products.create')->with([
+        return view('Padideh.products.create')->with([
             'categories' => $categories
         ]);
     }
@@ -43,14 +43,14 @@ class ProductRepo {
     }
     public function show($product)
     {
-        return view('admin.products.show')->with([
+        return view('Padideh.products.show')->with([
             'product' => $product
         ]);
     }
     public function edit($product)
     {
         $categories = ProductCategory::all();
-        return view('admin.products.edit')->with([
+        return view('Padideh.products.edit')->with([
             'product' => $product,
             'categories' => $categories
         ]);

@@ -7,7 +7,7 @@ class ArticleCategoryRepo {
 
     public function all(){
         $article_categories = ArticleCategory::latest()->paginate(15);
-        return view('admin.article_categories.index')->with([
+        return view('Padideh.article_categories.index')->with([
             'article_categories' => $article_categories,
         ]);
     }
@@ -15,7 +15,7 @@ class ArticleCategoryRepo {
     public function create()
     {
         $categories = ArticleCategory::all();
-        return view('admin.article_categories.create')->with([
+        return view('Padideh.article_categories.create')->with([
             'categories' => $categories
         ]);
     }

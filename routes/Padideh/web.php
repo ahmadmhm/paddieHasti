@@ -16,6 +16,9 @@ use \Illuminate\Support\Facades\Auth;
 Route::get('admin/login','Padideh\Admin\AdminAuthController@login')->name('login');
 Route::post('admin/login','Padideh\Admin\AdminAuthController@postLogin')->name('login.post');
 Route::group(['namespace'=>'Padideh\Admin','middleware'=>'auth:admin'],function(){
+    Route::get('imagecache', function () {
+       return 'ok';
+    })->name('imagecache');
     Route::prefix('panel')->name('panel.')->group(function(){
             Route::get('/dashboard','PanelController@dashboard')->name('dashboard');
             Route::resource('admins','AdminController');

@@ -10,7 +10,7 @@ class ArticleRepo {
 
     public function all(){
         $articles = Article::latest()->paginate(15);
-        return view('admin.articles.index')->with([
+        return view('Padideh.articles.index')->with([
             'articles' => $articles,
         ]);
     }
@@ -18,7 +18,7 @@ class ArticleRepo {
     public function create()
     {
         $categories = ArticleCategory::all();
-        return view('admin.articles.create')->with([
+        return view('Padideh.articles.create')->with([
             'categories' => $categories
         ]);
     }
@@ -50,7 +50,7 @@ class ArticleRepo {
 
     public function show($article)
     {
-        return view('admin.articles.show')->with([
+        return view('Padideh.articles.show')->with([
             'article' => $article
         ]);
     }
@@ -58,7 +58,7 @@ class ArticleRepo {
     public function edit($article)
     {
         $categories = ArticleCategory::all();
-        return view('admin.articles.edit')->with([
+        return view('Padideh.articles.edit')->with([
             'article' => $article,
             'categories' => $categories
         ]);

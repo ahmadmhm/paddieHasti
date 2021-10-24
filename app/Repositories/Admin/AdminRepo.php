@@ -6,12 +6,12 @@ use Illuminate\Support\Facades\Hash;
 class AdminRepo {
 
     public function all(){
-        return Admin::latest()->paginate(15);
+        return Admin::latest()->paginate(20);
     }
 
     public function create()
     {
-        return view('admin.admins.create');
+        return view('Padideh.admins.create');
     }
 
     public function store($request)
@@ -28,13 +28,13 @@ class AdminRepo {
 
     public function show($admin)
     {
-        return view('admin.admins.show')->with([
+        return view('Padideh.admins.show')->with([
             'admin' => $admin
         ]);
     }
     public function edit($admin)
     {
-        return view('admin.admins.edit')->with([
+        return view('Padideh.admins.edit')->with([
             'admin' => $admin
         ]);
     }
