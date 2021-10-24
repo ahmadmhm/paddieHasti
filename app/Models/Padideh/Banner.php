@@ -13,6 +13,9 @@ class Banner extends Model
     protected $guarded=[];
     protected $table="banners";
 
+    const UPLOAD_URL = 'banners/images/';
+    const SHOW_URL = '/storage/banners/images/';
+
     public function get_status()
     {
         try{
@@ -42,11 +45,11 @@ class Banner extends Model
     }
     public function getImage()
     {
-        return $this->image ?: 'previewImage.gif';
+        return $this->image ? self::SHOW_URL.$this->image : 'previewImage.gif';
     }
     public function getImageCover()
     {
-        return $this->image_cover ?: 'previewImage.gif';
+        return $this->image_cover ? self::SHOW_URL.$this->cover_image : 'previewImage.gif';
     }
 
 }

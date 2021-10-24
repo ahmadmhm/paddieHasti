@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories\Admin;
 
+use App\Http\Traits\FileUploadTrait;
 use App\Models\Padideh\Banner;
 use App\Models\Product;
 use App\Models\ProductCategory;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 
 class BannerRepo {
+    use FileUploadTrait;
 
     public function all(){
         $banners = Banner::latest()->paginate(15);
@@ -24,16 +26,16 @@ class BannerRepo {
     public function store($request)
     {
         $image = null;
+        if ($request->hasFile('image')) {
+            $image = $this->uploadFile($request->image, Banner::UPLOAD_URL, 'banner_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+        }
+
         $cover_image = null;
-        if(!empty($request->file('image')))
-        {
-            $image = $request->file('image')->store('images/banners/images','local');
+        if ($request->hasFile('cover_image')) {
+            $image = $this->uploadFile($request->cover_image, Banner::UPLOAD_URL, 'banner_cover_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
-        if(!empty($request->file('image_cover')))
-        {
-            $cover_image = $request->file('image_cover')->store('images/banners/coverImage','local');
-        }
-        $product = Banner::create([
+
+        return Banner::create([
             'title' => $request->title,
             'link' => $request->link,
             'image_cover' => $cover_image,
@@ -41,9 +43,7 @@ class BannerRepo {
             'is_active' => $request->input('is_active') ? true : false,
         ]);
 
-        return \redirect()->route('panel.banners.index')->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+       
     }
     public function show($banner)
     {
@@ -59,40 +59,34 @@ class BannerRepo {
     }
 
     public function update($request,$banner){
+        $image = null;
+        if ($request->hasFile('image')) {
+            $this->removeFile('storage', Banner::SHOW_URL.$banner->image);
+            $image = $this->uploadFile($request->image, Banner::UPLOAD_URL, 'banner_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+        }
+        $cover_image = null;
+        if ($request->hasFile('cover_image')) {
+            $this->removeFile('storage', Banner::SHOW_URL.$banner->cover_image);
+            $cover_image = $this->uploadFile($request->cover_image, Banner::UPLOAD_URL, 'banner_cover_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+        }
 
-        if(!empty($request->file('image')))
-        {
-            $image = $request->file('image')->store('images/banners/images','local');
-        }else{
-            $image = $banner->image;
-        }
-        if(!empty($request->file('image_cover')))
-        {
-            $cover_image = $request->file('image_cover')->store('images/banners/coverImage','local');
-        }else{
-            $cover_image = $banner->image_cover;
-        }
-        $banner = $banner->update([
+        return $banner->update([
             'title' => $request->title,
             'link' => $request->link,
-            'image_cover' => $cover_image,
-            'image' => $image,
+            'image_cover' => $cover_image ?? $banner->cover_image,
+            'image' => $image ?? $banner->image,
             'is_active' => $request->input('is_active') ? true : false,
         ]);
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        
     }
 
 
     public function destroy($banner)
     {
-        File::delete($banner->image);
-        File::delete($banner->image_cover);
-        $banner->delete();
-        return \redirect()->back()->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        $this->removeFile('storage', Banner::SHOW_URL.$banner->image);
+        $this->removeFile('storage', Banner::SHOW_URL.$banner->cover_image);
+        return $banner->delete();
+        
     }
 
 

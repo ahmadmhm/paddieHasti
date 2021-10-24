@@ -29,7 +29,12 @@ class bannerController extends Controller
 
     public function store(Request $request)
     {
-        return $this->bannerRepo->store($request);
+        $banner = $this->bannerRepo->store($request);
+        if($banner){
+            return redirect()->route('panel.banners.index')->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
 
@@ -48,14 +53,23 @@ class bannerController extends Controller
 
     public function update(Request $request,Banner $banner)
     {
-        return $this->bannerRepo->update($request,$banner);
-
+        $banner = $this->bannerRepo->update($request,$banner);
+        if($banner){
+            return redirect()->back()->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
 
     public function destroy(Banner $banner)
     {
-        return $this->bannerRepo->destroy($banner);
+        $result = $this->bannerRepo->destroy($banner);
+        if($result){
+            return redirect()->back()->with([
+                'success' => 'با موفقیت حذف شد'
+            ]);
+        }
 
     }
 }
