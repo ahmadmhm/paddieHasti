@@ -31,7 +31,7 @@ class ProductCategoryRepo {
 
     public function destroy($product_category)
     {
-       $product_category->delete();
+        return $product_category->delete();
     }
 
 

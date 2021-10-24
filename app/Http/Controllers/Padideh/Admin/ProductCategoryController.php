@@ -28,17 +28,21 @@ class ProductCategoryController extends Controller
 
     public function store(Request $request)
     {
-        $this->productCategoryRepo->store($request);
-        return redirect()->route('panel.product_categories.index')->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        $category = $this->productCategoryRepo->store($request);
+        if($category){
+            return redirect()->route('panel.product_categories.index')->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
     public function destroy(ProductCategory $product_category)
     {
-        $this->productCategoryRepo->destroy($product_category);
-        return back()->with([
-            'success' => 'با موفقیت حذف شذ',
-        ]);
+        $result = $this->productCategoryRepo->destroy($product_category);
+        if($result){
+            return back()->with([
+                'success' => 'با موفقیت حذف شذ',
+            ]);
+        }
     }
 }
