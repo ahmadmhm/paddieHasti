@@ -101,5 +101,12 @@ class ArticleRepo {
        
     }
 
+    //api
+
+    public function getarticles($request)
+    {
+        return Article::query()->active()->get();
+    }
+
 
 }

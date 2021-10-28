@@ -17,6 +17,8 @@ class Article extends Model
     const UPLOAD_URL = 'articles/images/';
     const SHOW_URL = '/storage/articles/images/';
 
+    const ACTIVE = 1;
+    const INACTIVE = 0;
 
     public function article_categories()
     {
@@ -64,6 +66,8 @@ class Article extends Model
     {
         return $this->image ? self::SHOW_URL.$this->image : 'previewImage.gif';
     }
-
+    public function scopeActive($query){
+        return $query->where('published',Self::ACTIVE);
+    }
 
 }
