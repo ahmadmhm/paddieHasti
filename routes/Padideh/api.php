@@ -38,6 +38,14 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
         //products
         Route::get('products','ProductController@productList');
 
+        //stories
+        Route::get('stories','StoryController@storyList');
+        
+        //banners
+        Route::get('banners','BannerController@BannerList');
+
+        //orders
+        
 
 
 
