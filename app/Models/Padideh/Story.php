@@ -17,6 +17,8 @@ class Story extends Model
 
     const UPLOAD_URL = 'stories/images/';
     const SHOW_URL = '/storage/stories/images/';
+    const ACTIVE = 1;
+    const INACTIVE = 0;
 
 
     public function get_status()
@@ -49,5 +51,9 @@ class Story extends Model
     public function getImage()
     {
         return $this->image ? Self::SHOW_URL.$this->image : 'previewImage.gif';
+    }
+
+    public function scopeActive($query){
+        return $query->where('is_active',Self::ACTIVE);
     }
 }

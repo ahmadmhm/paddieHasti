@@ -72,4 +72,9 @@ class StoryRepo {
     }
 
 
+    //api
+
+    public function getStory($request){
+        return Story::query()->active()->get();
+    } 
 }
