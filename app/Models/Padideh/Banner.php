@@ -15,6 +15,8 @@ class Banner extends Model
 
     const UPLOAD_URL = 'banners/images/';
     const SHOW_URL = '/storage/banners/images/';
+    const ACTIVE = 1;
+    const INACTIVE = 0;
 
     public function get_status()
     {
@@ -52,4 +54,7 @@ class Banner extends Model
         return $this->image_cover ? self::SHOW_URL.$this->cover_image : 'previewImage.gif';
     }
 
+    public function scopeActive($query){
+        return $query->where('is_active',Self::ACTIVE);
+    }
 }

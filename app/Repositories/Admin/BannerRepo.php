@@ -90,4 +90,9 @@ class BannerRepo {
     }
 
 
+    /////api
+    public function getbanners($request){
+        return Banner::query()->active()->get();
+    }
+    
 }
