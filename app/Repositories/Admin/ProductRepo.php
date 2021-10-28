@@ -87,5 +87,8 @@ class ProductRepo {
        
     }
 
-
+    public function getProducts($request)
+    {
+        return Product::query()->active()->get();
+    }
 }

@@ -15,6 +15,9 @@ class Product extends Model
     protected $guarded=[];
     protected $table="products";
 
+    const ACTIVE = 1;
+    const INACTIVE = 0;
+    
     const UPLOAD_URL = 'products/images/';
     const SHOW_URL = '/storage/products/images/';
 
@@ -59,5 +62,9 @@ class Product extends Model
         foreach($this->categories as $category){
             return "<span class='badge badge-light'>$category->name</span>";
         }
+    }
+
+    public function scopeActive($query){
+        return $query->where('is_active',Self::ACTIVE);
     }
 }

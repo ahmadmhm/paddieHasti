@@ -34,6 +34,14 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
 
         //wastes
         Route::get('wastes', 'WasteController@wasteList');
+        
+        //products
+        Route::get('products','ProductController@productList');
+
+
+
+
+
 
     });
 });
