@@ -4,11 +4,14 @@ namespace App\Http\Controllers\Padideh\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Padideh\Api\UpdateUserRequest;
+use App\Http\Resources\Padideh\AddressResource;
 use App\Http\Resources\Padideh\UserResource;
 use App\Http\Traits\FileUploadTrait;
-
+use App\Models\Padideh\MyAddresses;
+use App\Models\Padideh\User;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -43,5 +46,37 @@ class UserController extends Controller
     public function getCities(Request $request)
     {
         return $this->successResponse('search cities', City::where('name', 'like', '%'.$request->search.'%')->select('id','name')->get());
+    }
+
+    public function add_address(Request $request)
+    {
+        $user = Auth::guard('api')->user();
+        $this->validate($request,[
+            'title' => 'nullable|string|max:255',
+            'location' => 'nullable|max:2000'
+        ]);
+
+        $user->address()->create([
+            'title' => $request->title,
+            'location' => $request->location
+        ]);
+
+        return $this->successResponse('با موفقیت ثبت شد');
+
+
+      
+    }
+
+    public function show_address(Request $request)
+    {
+        $user = Auth::guard('api')->user();
+        $addreses = AddressResource::collection($user->address);
+        return $this->successResponse('لیست آدرس های کاربر', $addreses);
+    }
+
+    public function delete_address(MyAddresses $address)
+    {
+        $address->delete();
+        return $this->successResponse('با موفقیت حذف شد');
     }
 }
