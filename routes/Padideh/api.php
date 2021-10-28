@@ -44,6 +44,10 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
         //banners
         Route::get('banners','BannerController@BannerList');
 
+        Route::post('my_adddress','UserController@add_address');
+        Route::get('my_adddress','UserController@show_address');
+        Route::delete('my_adddress/{address}','UserController@delete_address');
+
         //orders
         
 
