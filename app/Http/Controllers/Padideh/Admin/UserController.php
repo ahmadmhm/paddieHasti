@@ -72,4 +72,6 @@ class UserController extends Controller
            'success' => 'با موفقیت حذف شذ',
        ]);
     }
+
+   
 }

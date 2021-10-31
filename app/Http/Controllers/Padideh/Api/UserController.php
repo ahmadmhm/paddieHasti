@@ -48,35 +48,7 @@ class UserController extends Controller
         return $this->successResponse('search cities', City::where('name', 'like', '%'.$request->search.'%')->select('id','name')->get());
     }
 
-    public function add_address(Request $request)
-    {
-        $user = Auth::guard('api')->user();
-        $this->validate($request,[
-            'title' => 'nullable|string|max:255',
-            'location' => 'nullable|max:2000'
-        ]);
+   
 
-        $user->address()->create([
-            'title' => $request->title,
-            'location' => $request->location
-        ]);
-
-        return $this->successResponse('با موفقیت ثبت شد');
-
-
-      
-    }
-
-    public function show_address(Request $request)
-    {
-        $user = Auth::guard('api')->user();
-        $addreses = AddressResource::collection($user->address);
-        return $this->successResponse('لیست آدرس های کاربر', $addreses);
-    }
-
-    public function delete_address(MyAddresses $address)
-    {
-        $address->delete();
-        return $this->successResponse('با موفقیت حذف شد');
-    }
+ 
 }
