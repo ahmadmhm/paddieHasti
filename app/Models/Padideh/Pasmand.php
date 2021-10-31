@@ -65,6 +65,8 @@ class Pasmand extends Model
         }
     }
 
+  
+
 
     //scopes
     public function scopeActive($query)
