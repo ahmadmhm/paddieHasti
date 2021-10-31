@@ -18,6 +18,7 @@
                 <li>
                     <a href="{{route('panel.users.index')}}" class="waves-effect"><i class="dripicons-user-group"></i><span> کاربران </span></a>
                 </li>
+               
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-to-do"></i><span> محصولات فروشگاه <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
@@ -45,6 +46,23 @@
                         <li><a href="{{route('panel.articles.index')}}">محتوا</a></li>
                     </ul>
                 </li>
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-to-do"></i><span>  سفارشات <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                    <ul class="submenu">
+                        <li><a href="{{route('panel.waste_orders.index')}}">لیست سفارشات</a></li>
+                        <li><a href="{{route('panel.order_status.index')}}">وضعیت سفارش</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-to-do"></i><span> رانندگان <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
+                    <ul class="submenu">
+                        <li><a href="{{route('panel.drivers.index')}}">لیست راننده ها</a></li>
+                        <li><a href="{{route('panel.order_status.index')}}">وضعیت </a></li>
+                    </ul>
+                </li>
+                {{-- <li>
+                    <a href="{{route('panel.waste_orders.index')}}" class="waves-effect"><i class="dripicons-user-group"></i><span> لیست سفارش ها </span></a>
+                </li> --}}
                 <li>
                     <a href="{{route('panel.users.index')}}" class="waves-effect"><i class="dripicons-user-group"></i><span> تنظیمات </span></a>
                 </li>

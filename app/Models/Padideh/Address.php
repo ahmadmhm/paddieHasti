@@ -18,4 +18,12 @@ class Address extends Model
     public function user(){
         return $this->belongsTo(User::class,'user_id');
     }
+
+
+    public function waste_order()
+    {
+        return $this->hasOne(WasteOrderHead::class);
+    }
+
+
 }

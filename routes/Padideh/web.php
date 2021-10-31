@@ -23,6 +23,7 @@ Route::group(['namespace'=>'Padideh\Admin','middleware'=>'auth:admin'],function(
             Route::get('/dashboard','PanelController@dashboard')->name('dashboard');
             Route::resource('admins','AdminController');
             Route::resource('users','UserController');
+            Route::get('address/{user}','AddressController@show')->name('address.show');
             Route::resource('product_categories','ProductCategoryController')->only('index','create','store','destroy');
             Route::resource('products','ProductController');
             Route::resource('pasmands','PasmandController');
@@ -30,6 +31,9 @@ Route::group(['namespace'=>'Padideh\Admin','middleware'=>'auth:admin'],function(
             Route::resource('stories','StoryController');
             Route::resource('article_categories','ArticleCategoryController')->only('index','create','store','destroy');
             Route::resource('articles','ArticleController');
+            Route::resource('waste_orders','OrderController')->only('index','show');
+            Route::resource('order_status','OrderStatusController')->only('index','store','destroy','create');
+            Route::resource('drivers','DriverController');
     });
 });
 

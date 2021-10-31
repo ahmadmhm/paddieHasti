@@ -42,4 +42,9 @@ class Admin extends Authenticatable
         return $v->formatJalaliDate();
     }
 
+    public function waste_order()
+    {
+        return $this->hasOne(WasteOrderHead::class);
+    }
+
 }
