@@ -73,6 +73,8 @@ class User extends Authenticatable
     }
    
     public function waste_orders(){
-        return $this->hasMany(WasteOrderHead::class);
+        return $this->hasMany(WasteOrderHead::class,'user_id');
     }
+
+   
 }

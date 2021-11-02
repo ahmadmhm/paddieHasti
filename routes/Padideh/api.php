@@ -48,7 +48,7 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
       
         //orders
 
-
+        Route::resource('/orders','OrderController');
 
 
 

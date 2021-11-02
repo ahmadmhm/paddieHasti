@@ -21,12 +21,12 @@ class CreateWasteOrdersTable extends Migration
             $table->string('vahed')->nullable();
             $table->string('weight')->nullable();
             $table->string('price')->nullable();
-            $table->unsignedBigInteger('pasmand_order_head_id');
+            $table->unsignedBigInteger('waste_orderhead_id');
             $table->timestamps();
-
+            $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('pasmand_id')->references('id')->on('pasmands');
-            $table->foreign('pasmand_order_head_id')->references('id')->on('waste_order_heads');
+            $table->foreign('waste_orderhead_id')->references('id')->on('waste_orderheads');
 
         });
     }
