@@ -17,7 +17,7 @@ class CreateWasteOrderHeadsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('code')->nullable();
-            $table->unsignedBigInteger('address_id')->nullable();
+            $table->unsignedBigInteger('address_id');
             $table->unsignedBigInteger('driver_id')->nullable();
             $table->unsignedBigInteger('status_id')->nullable();
             $table->unsignedBigInteger('admin_id')->nullable();
@@ -25,7 +25,8 @@ class CreateWasteOrderHeadsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('address_id')->references('id')->on('address');
+            $table->foreign('address_id')->references('id')->on('user_addresses');
+            $table->foreign('admin_id')->references('id')->on('admins');
 
         });
     }
