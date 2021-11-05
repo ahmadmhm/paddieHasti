@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources\Padideh;
 
+use App\Models\Padideh\Waste;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class WasteOrderResource extends JsonResource
@@ -15,13 +16,11 @@ class WasteOrderResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'user_id' => $this->user_id,
-            'pasmand_id' => $this->pasmand_id,
+            'waste_icon' => $this->waste ? Waste::SHOW_URL.$this->waste->icon : null,
             'name' => $this->name,
-            'vahed' => $this->vahed,
+            'unit' => $this->unit,
             'weight' => $this->weight,
             'price' => $this->price,
         ];
-
     }
 }

@@ -22,9 +22,9 @@ class WasteOrder extends Model
     }
 
     public function pasmand(){
-        return $this->belongsTo(Pasmand::class , 'pasmand_id');
+        return $this->belongsTo(Waste::class , 'pasmand_id');
     }
-   
-    
+
+
 
 }

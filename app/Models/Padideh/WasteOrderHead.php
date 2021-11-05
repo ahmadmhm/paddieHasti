@@ -8,13 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class WasteOrderHead extends Model
 {
-    use HasFactory;
     use SoftDeletes;
 
     protected $guarded=[];
     protected $table="waste_orderheads";
 
-    public function waste_orders(){
+    const BASE_CODE = 'PDH';
+
+    //relations
+
+    public function orders(){
         return $this->hasMany(WasteOrder::class,'waste_orderhead_id');
     }
 
@@ -37,6 +40,7 @@ class WasteOrderHead extends Model
         return $this->belongsTo(Address::class,'address_id');
     }
 
+    //functions
     public function getFinalPrice()
     {
         $price = 0;
@@ -44,5 +48,8 @@ class WasteOrderHead extends Model
         return $price;
     }
 
-
+    public function generateCode()
+    {
+        return self::BASE_CODE.'-'.now()->format('Ymd').'-'.$this->id;
+    }
 }

@@ -13,15 +13,15 @@ class CreatePasmandsTable extends Migration
      */
     public function up()
     {
-        Schema::create('pasmands', function (Blueprint $table) {
+        Schema::create('wastes', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('icon')->nullable()->default(NULL);
-            $table->string('vahed')->nullable()->default(NULL);
-            $table->string('buy_price')->nullable()->default(NULL);
-            $table->integer('sale_price')->nullable()->default(NULL);
-            $table->text('description')->nullable()->default(NULL);
-            $table->boolean('is_active')->nullable()->default(true);
+            $table->string('icon')->nullable();
+            $table->string('unit')->nullable();
+            $table->string('buy_price')->nullable();
+            $table->integer('sale_price')->nullable();
+            $table->text('description')->nullable();
+            $table->boolean('is_active')->default(0);
             $table->softDeletes();
             $table->timestamps();
         });

@@ -24,12 +24,11 @@ class StoreWasteOrderHead extends FormRequest
     public function rules()
     {
         return [
-            'pasmand_id' => 'nullable|numeric',
-            'name' => 'nullable|string|max:50',
-            'vahed' => 'nullable|string|max:50',
-            'weight' => 'nullable|numeric',
-            'price' => 'nullable|numeric',
-            'address_id' => 'nullable|numeric',
+            'address_id' => 'required|numeric|exists:user_addresses,id,user_id,'.auth('api')->user()->id,
+            'delivery_date' => 'required|string',
+            'orders' => 'required|array',
+            'orders.*.waste_id' => 'required|exists:wastes,id',
+            'orders.*.weight' => 'required|numeric|min:0',
         ];
     }
 }

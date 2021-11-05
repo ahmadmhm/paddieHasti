@@ -44,13 +44,11 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
         //banners
         Route::get('banners','BannerController@BannerList');
 
-        Route::resource('addresses','AddressController');
-      
+        Route::apiResource('addresses','AddressController');
+
         //orders
 
-        Route::resource('/orders','OrderController');
-
-
+        Route::apiResource('orders','OrderController');
 
 
     });

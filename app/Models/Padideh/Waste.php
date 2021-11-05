@@ -7,12 +7,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Verta;
-class Pasmand extends Model
+class Waste extends Model
 {
     use HasFactory;
     use SoftDeletes;
     protected $guarded=[];
-    protected $table="pasmands";
+    protected $table="wastes";
 
     const ACTIVE = 1;
     const INACTIVE = 0;
@@ -65,7 +65,7 @@ class Pasmand extends Model
         }
     }
 
-  
+
 
 
     //scopes

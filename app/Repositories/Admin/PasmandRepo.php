@@ -2,7 +2,7 @@
 namespace App\Repositories\Admin;
 
 use App\Http\Traits\FileUploadTrait;
-use App\Models\Padideh\Pasmand;
+use App\Models\Padideh\Waste;
 use App\Models\Padideh\Product;
 use App\Models\Padideh\ProductCategory;
 use Illuminate\Support\Facades\File;
@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class PasmandRepo {
     use FileUploadTrait;
     public function all(){
-        $pasmands = Pasmand::latest()->paginate(15);
+        $pasmands = Waste::latest()->paginate(15);
         return view('Padideh.pasmands.index')->with([
             'pasmands' => $pasmands,
         ]);
@@ -26,10 +26,10 @@ class PasmandRepo {
     {
         $icon = null;
         if ($request->hasFile('icon')) {
-            $icon = $this->uploadFile($request->icon, Pasmand::UPLOAD_URL, 'waste_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+            $icon = $this->uploadFile($request->icon, Waste::UPLOAD_URL, 'waste_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
 
-        return Pasmand::create([
+        return Waste::create([
             'name' => $request->input('name'),
             'vahed' => $request->input('vahed'),
             'buy_price' => $request->input('buy_price'),
@@ -55,8 +55,8 @@ class PasmandRepo {
     public function update($request,$pasmand){
         $icon = null;
         if ($request->hasFile('icon')) {
-            $this->removeFile('storage', Pasmand::SHOW_URL.$pasmand->icon);
-            $icon = $this->uploadFile($request->icon, Pasmand::UPLOAD_URL, 'waste_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+            $this->removeFile('storage', Waste::SHOW_URL.$pasmand->icon);
+            $icon = $this->uploadFile($request->icon, Waste::UPLOAD_URL, 'waste_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
 
         return $pasmand->update([
@@ -73,7 +73,7 @@ class PasmandRepo {
 
     public function destroy($pasmand)
     {
-        $this->removeFile('storage', Pasmand::SHOW_URL.$pasmand->icon);
+        $this->removeFile('storage', Waste::SHOW_URL.$pasmand->icon);
         //File::delete($pasmand->image);
         return $pasmand->delete();
     }
@@ -82,6 +82,6 @@ class PasmandRepo {
 
     public function getWastes($request)
     {
-        return Pasmand::query()->active()->get();
+        return Waste::query()->active()->get();
     }
 }

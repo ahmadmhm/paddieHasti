@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Padideh\Pasmand;
+use App\Models\Padideh\Waste;
 use App\Repositories\Admin\pasmandRepo;
 use Illuminate\Http\Request;
 
@@ -45,7 +45,7 @@ class PasmandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Pasmand $pasmand)
+    public function show(Waste $pasmand)
     {
         return $this->pasmandRepo->show($pasmand);
     }
@@ -56,7 +56,7 @@ class PasmandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Pasmand $pasmand)
+    public function edit(Waste $pasmand)
     {
         return $this->pasmandRepo->edit($pasmand);
 
@@ -69,7 +69,7 @@ class PasmandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Pasmand $pasmand)
+    public function update(Request $request, Waste $pasmand)
     {
         $waste = $this->pasmandRepo->update($request,$pasmand);
         if ($waste) {
@@ -86,7 +86,7 @@ class PasmandController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Pasmand $pasmand)
+    public function destroy(Waste $pasmand)
     {
         $result = $this->pasmandRepo->destroy($pasmand);
         if ($result) {

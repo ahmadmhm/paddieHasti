@@ -30,7 +30,7 @@
                                     <label for="vahed">واحد</label>
                                     <select name="vahed" id="vahed" class="form-control">
                                         <option value="">انتخاب واحد</option>
-                                        @foreach (App\Models\Padideh\Pasmand::$types as $key=>$value)
+                                        @foreach (App\Models\Padideh\Waste::$types as $key=>$value)
                                         <option value="{{$key}}" {{$pasmand->vahed == $key ? 'selected' : ''}}>{{$value}}</option>
                                         @endforeach
                                     </select>

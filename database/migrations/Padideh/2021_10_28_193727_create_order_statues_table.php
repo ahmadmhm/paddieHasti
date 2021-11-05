@@ -15,10 +15,9 @@ class CreateOrderStatuesTable extends Migration
     {
         Schema::create('order_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('name',10);
-            $table->string('level',10)->nullable();
+            $table->string('title');
+            $table->tinyInteger('step')->default(0);
             $table->text('description')->nullable();
-            $table->text('notification_dscr')->nullable();
             $table->timestamps();
         });
     }

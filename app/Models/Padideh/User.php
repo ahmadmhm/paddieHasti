@@ -67,14 +67,14 @@ class User extends Authenticatable
         return $this->hasMany(Article::class,'user_id');
     }
 
-   
+
     public function addresses(){
         return $this->hasMany(Address::class);
     }
-   
-    public function waste_orders(){
+
+    public function wasteOrders(){
         return $this->hasMany(WasteOrderHead::class,'user_id');
     }
 
-   
+
 }

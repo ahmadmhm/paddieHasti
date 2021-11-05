@@ -15,7 +15,6 @@ class CreateWasteOrdersTable extends Migration
     {
         Schema::create('waste_orders', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('waste_id');
             $table->string('name')->nullable();
             $table->string('unit')->nullable();
@@ -24,8 +23,7 @@ class CreateWasteOrdersTable extends Migration
             $table->unsignedBigInteger('waste_orderhead_id');
             $table->timestamps();
             $table->softDeletes();
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('waste_id')->references('id')->on('pasmands');
+            $table->foreign('waste_id')->references('id')->on('wastes');
             $table->foreign('waste_orderhead_id')->references('id')->on('waste_orderheads');
 
         });

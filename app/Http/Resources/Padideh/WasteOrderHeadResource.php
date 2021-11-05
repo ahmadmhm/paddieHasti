@@ -18,10 +18,11 @@ class WasteOrderHeadResource extends JsonResource
             'user_id' => $this->user_id,
             'code' => $this->code,
             'driver_id' => $this->driver_id,
+            'driver' => $this->driver,
             'status_id' => $this->status_id,
-            'admin_id' => $this->admin_id,
+            'status_text' => $this->status->title ?? null,
             'delivery_date' => $this->delivery_date,
-            'orderItem' => WasteOrderResource::collection($this->waste_orders)
+            'orderItem' => WasteOrderResource::collection($this->orders)
         ];
     }
 }

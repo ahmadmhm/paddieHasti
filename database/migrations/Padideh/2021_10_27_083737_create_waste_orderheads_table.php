@@ -22,6 +22,7 @@ class CreateWasteOrderHeadsTable extends Migration
             $table->unsignedBigInteger('status_id')->nullable();
             $table->unsignedBigInteger('admin_id')->nullable();
             $table->timestamp('delivery_date')->nullable();
+            $table->unsignedBigInteger('total_price')->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->foreign('user_id')->references('id')->on('users');
