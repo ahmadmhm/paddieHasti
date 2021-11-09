@@ -51,8 +51,8 @@
                                 </div>
                                 <div class="col-12 col-lg-12 form-group">
                                     <div class="form-check">
-                                        <input type="checkbox" class="form-check-input" id="is_active" {{$product->is_active == true ? 'checked' : ''}} name="is_active">
-                                        <label class="form-check-label pr-4" for="is_active">فعال باشد</label>
+                                        <input type="checkbox" class="form-check-input" id="access_status" {{$product->is_active == true ? 'checked' : ''}} name="access_status">
+                                        <label class="form-check-label pr-4" for="access_status">فعال باشد</label>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                         <div class="col-3">
                             <div class="col-12 col-lg-4 form-group">
                                 <label for="image">
-                                    <img id="preview-image-before-upload" src="{{getImageSrc($product->getImage(),'medium')}}" style="max-width: 200px" alt="preview image" >
+                                    <img id="preview-image-before-upload" src="{{ $product->getImage() }}" style="max-width: 200px" alt="preview image" >
                                     <input type="file" name="image" class="form-control"  id="image">
                                 </label>
                             </div>

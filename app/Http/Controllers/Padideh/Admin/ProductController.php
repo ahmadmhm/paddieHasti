@@ -28,8 +28,8 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
-        $products = $this->productRepo->store($request);
-        if($products){
+        $product = $this->productRepo->store($request);
+        if($product){
             return redirect()->route('panel.products.index')->with([
                 'success' => 'با موفقیت ثبت شد'
             ]);
@@ -53,7 +53,7 @@ class ProductController extends Controller
     {
         $product = $this->productRepo->update($request,$product);
         if($product){
-            return redirect()->back()->with([
+            return redirect()->route('panel.products.index')->with([
                 'success' => 'با موفقیت ثبت شد'
             ]);
         }

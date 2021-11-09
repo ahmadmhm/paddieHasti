@@ -38,11 +38,13 @@ class ProductRepo {
             'link' => $request->link,
             'description' => $request->description,
             'image' => $image,
-            'is_active' => $request->input('is_active') ? true : false,
+            'is_active' => $request->input('access_status') ? true : false,
         ]);
         $product->categories()->attach(
             $request->category_id
         );
+
+        return $product;
 
        
     }
@@ -74,7 +76,7 @@ class ProductRepo {
             'link' => $request->link,
             'description' => $request->description,
             'image' =>  $image ?? $product->image,
-            'is_active' => $request->input('is_active') ? true : false,
+            'is_active' => $request->input('access_status') ? true : false,
         ]);
        
     }

@@ -31,7 +31,7 @@
                         <tr>
                             <td>{{$key+1}}</td>
                             <td>
-                                <img src="{{ getImageSrc($product->getImage() , 'small') }}" width="30px" height="30" class="rounded-circle" alt="">    
+                                <img src="{{ $product->getImage()  }}" width="30px" height="30" class="rounded-circle" alt="">    
                             </td>
                             <td>{{$product->name ?: '---'}}</td>
                             <td>

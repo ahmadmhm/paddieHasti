@@ -39,7 +39,7 @@
                        </table>
                    </div>
                    <div class="col-3">
-                       <img src="{{getImageSrc($product->getImage(),'medium')}}" alt="">
+                       <img src="{{ $product->getImage() }}" alt="">
                    </div>
                </div>
             </div>
