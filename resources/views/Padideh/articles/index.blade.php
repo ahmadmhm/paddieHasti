@@ -29,7 +29,7 @@
                         <tr>
                             <td>{{$key+1}}</td>
                             <td>
-                                <img src="{{ getImageSrc($article->getImage() , 'small') }}" width="30px" height="30" class="rounded-circle" alt="">    
+                                <img src="{{  $article->getImage()  }}" width="30px" height="30" class="rounded-circle" alt="">    
                             </td>
                             <td>{{$article->title ?: '---'}}</td>
                             <td>

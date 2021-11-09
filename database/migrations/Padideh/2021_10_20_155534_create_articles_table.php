@@ -23,11 +23,9 @@ class CreateArticlesTable extends Migration
             $table->boolean('published')->default(true);
             $table->boolean('can_comment')->nullable();
             $table->boolean('can_rate')->nullable();
-            $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamps();
 
-            $table->foreign('category_id')->references('id')->on('article_categories');
             $table->foreign('user_id')->references('id')->on('users');
 
         });

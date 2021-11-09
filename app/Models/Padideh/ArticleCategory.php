@@ -59,7 +59,7 @@ class ArticleCategory extends Model
 
     public function getImage()
     {
-        return $this->image ?: 'previewImage.gif';
+        return $this->image ? self::SHOW_URL.$this->image : 'previewImage.gif';
     }
 
     public function getParent()

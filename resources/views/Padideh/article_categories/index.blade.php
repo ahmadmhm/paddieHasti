@@ -29,7 +29,7 @@
                                 <tr>
                                     <td>{{$key+1}}</td>
                                     <td>
-                                        <img src="{{ getImageSrc($article_category->getImage() , 'small') }}" alt="image" width="30px" class="rounded-circle" height="30px">
+                                        <img src="{{ $article_category->getImage()  }}" width="30px" height="30" class="rounded-circle" alt="">    
                                     </td>
                                     <td>{{$article_category->name ?: '---'}}</td>
                                     <td>{{$article_category->parent ? $article_category->parent->name : '---'}}</td>

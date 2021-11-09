@@ -27,10 +27,6 @@ class ArticleRepo {
 
     public function store($request)
     {
-        $image=null;
-        if(!empty($request->file('image'))){
-            $image =  $request->file('image')->store('Images/articles','local');
-        }
         $image = null;
         if ($request->hasFile('image')) {
             $image = $this->uploadFile($request->image, Article::UPLOAD_URL, 'article_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
