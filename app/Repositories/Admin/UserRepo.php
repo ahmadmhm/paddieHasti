@@ -22,7 +22,7 @@ class UserRepo {
             'mobile' => $request->mobile,
             'email' => $request->email,
             'password' => $request->password,
-            'access_status' => $request->input('is_active') ? true : false,
+            'access_status' => $request->input('access_status') ? true : false,
         ]);
     }
     public function show($user)

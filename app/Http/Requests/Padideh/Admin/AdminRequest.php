@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\Admins;
+namespace App\Http\Requests\Padideh\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 

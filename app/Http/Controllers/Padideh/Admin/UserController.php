@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Padideh\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\Admins\UpdateUserRequest;
-use App\Http\Requests\Admin\Admins\UserRequest;
+use App\Http\Requests\Padideh\Admin\UpdateUserRequest;
+use App\Http\Requests\Padideh\Admin\UserRequest;
 use App\Models\Padideh\User;
 use App\Repositories\Admin\UserRepo;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
@@ -35,10 +34,13 @@ class UserController extends Controller
 
     public function store(UserRequest $request)
     {
-        $this->userRepo->store($request);
-        return \redirect()->route('panel.users.index')->with([
-            'success' => 'با موفقیت ثبت شد'
-        ]);
+        $user = $this->userRepo->store($request);
+        if($user)
+        {
+            return \redirect()->route('panel.users.index')->with([
+                'success' => 'با موفقیت ثبت شد'
+            ]);
+        }
     }
 
 
