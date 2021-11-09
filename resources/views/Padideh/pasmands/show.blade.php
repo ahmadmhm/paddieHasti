@@ -39,7 +39,7 @@
                        </table>
                    </div>
                    <div class="col-3">
-                       <img src="{{getImageSrc($pasmand->getImage(),'medium')}}" alt="">
+                       <img src="{{ $pasmand->getImage() }}" alt="" width="200" height="200">
                    </div>
                </div>
             </div>

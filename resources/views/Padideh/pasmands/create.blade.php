@@ -26,8 +26,8 @@
 
                                 <div class="col-12 col-lg-6 form-group">
 
-                                    <label for="vahed">واحد</label>
-                                    <select name="vahed" id="vahed" class="form-control">
+                                    <label for="unit">واحد</label>
+                                    <select name="unit" id="unit" class="form-control">
                                         <option value="">انتخاب واحد</option>
                                         @foreach (App\Models\Padideh\Waste::$types as $key=>$value)
                                         <option value="{{$key}}">{{$value}}</option>

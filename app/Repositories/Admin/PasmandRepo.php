@@ -31,7 +31,7 @@ class PasmandRepo {
 
         return Waste::create([
             'name' => $request->input('name'),
-            'vahed' => $request->input('vahed'),
+            'unit' => $request->input('unit'),
             'buy_price' => $request->input('buy_price'),
             'sale_price' => $request->input('sale_price'),
             'description' => $request->input('description'),
@@ -61,7 +61,7 @@ class PasmandRepo {
 
         return $pasmand->update([
             'name' => $request->input('name'),
-            'vahed' => $request->input('vahed'),
+            'unit' => $request->input('unit'),
             'buy_price' => $request->input('buy_price'),
             'sale_price' => $request->input('sale_price'),
             'description' => $request->input('description'),

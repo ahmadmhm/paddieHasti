@@ -36,7 +36,7 @@
                             </td>
                             <td>{{$pasmand->name ?: '---'}}</td>
                             <td>
-                                {{ $pasmand->vahed ?: 'تومان' }}
+                                {{ $pasmand->unit ?: 'تومان' }}
                             </td>
                             <td>{{ number_format($pasmand->buy_price ) }} تومان</td>
                             <td>{{ number_format($pasmand->sale_price) }}تومان</td>
