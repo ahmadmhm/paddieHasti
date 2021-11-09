@@ -27,8 +27,8 @@
                        </table>
                    </div>
                    <div class="col-3">
-                       <img src="{{getImageSrc($story->getImage(),'medium')}}" alt="">
-                   </div>
+                    <img src="{{ $pasmand->getImage() }}" alt="" width="200" height="200">
+                </div>
                </div>
             </div>
         </div>

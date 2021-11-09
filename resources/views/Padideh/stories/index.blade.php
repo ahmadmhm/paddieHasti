@@ -28,7 +28,7 @@
                         <tr>
                             <td>{{$key+1}}</td>
                             <td>
-                                <img src="{{ getImageSrc($story->getImage() , 'small') }}" width="30px" height="30" class="rounded-circle" alt="">    
+                                <img src="{{  $story->getImage() }}" width="30px" height="30" class="rounded-circle" alt="">    
                             </td>
                             <td>{{ $story->title }}</td>
                             <td>{!!$story->get_status() !!}</td>

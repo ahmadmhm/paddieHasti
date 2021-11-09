@@ -51,7 +51,7 @@ class StoryController extends Controller
     {
         $story = $this->storyRepo->update($request,$story);
         if($story){
-            return \redirect()->back()->with([
+            return \redirect()->route('panel.stories.index')->with([
                 'success' => 'با موفقیت ثبت شد'
             ]);
         }
