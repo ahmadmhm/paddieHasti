@@ -31,8 +31,8 @@
                        </table>
                    </div>
                    <div class="col-3">
-                       <img src="{{getImageSrc($banner->getImage(),'medium')}}" alt="">
-                       <img src="{{getImageSrc($banner->getImageCover(),'medium')}}" alt="">
+                       <img src="{{ $banner->getImage() }}" alt="">
+                       <img src="{{ $banner->getImageCover() }}" alt="">
                    </div>
                </div>
             </div>

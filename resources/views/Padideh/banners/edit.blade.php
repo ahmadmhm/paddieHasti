@@ -36,13 +36,13 @@
                         <div class="col-3">
                             <div class="col-12 col-lg-4 form-group">
                                 <label for="image">
-                                    <img id="preview-image-before-upload" src="{{getImageSrc($banner->getImage(),'medium')}}" style="max-width: 200px" alt="preview image" >
+                                    <img id="preview-image-before-upload" src="{{ $banner->getImage() }}" style="max-width: 200px" alt="preview image" >
                                     <input type="file" name="image" class="form-control"  id="image">
                                 </label>
                             </div>
                             <div class="col-12 col-lg-4 form-group">
                                 <label for="image_cover">
-                                    <img id="preview-image-cover-before-upload" src="{{getImageSrc($banner->getImageCover(),'medium')}}" style="max-width: 200px" alt="preview image" >
+                                    <img id="preview-image-cover-before-upload" src="{{ $banner->getImageCover() }}" style="max-width: 200px" alt="preview image" >
                                     <input type="file" name="image_cover" class="form-control"  id="image_cover">
                                 </label>
                             </div>

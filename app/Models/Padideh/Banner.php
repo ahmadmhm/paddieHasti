@@ -2,6 +2,7 @@
 
 namespace App\Models\Padideh;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -11,10 +12,19 @@ class Banner extends Model
     use HasFactory;
     use SoftDeletes;
     protected $guarded=[];
+
     protected $table="banners";
+
+    protected $casts = [
+        'image',
+        'image_cover',
+    ];
 
     const UPLOAD_URL = 'banners/images/';
     const SHOW_URL = '/storage/banners/images/';
+
+
+
     const ACTIVE = 1;
     const INACTIVE = 0;
 
@@ -51,7 +61,7 @@ class Banner extends Model
     }
     public function getImageCover()
     {
-        return $this->image_cover ? self::SHOW_URL.$this->cover_image : 'previewImage.gif';
+        return $this->image_cover ? self::SHOW_URL.$this->image_cover : 'previewImage.gif';
     }
 
     public function scopeActive($query){

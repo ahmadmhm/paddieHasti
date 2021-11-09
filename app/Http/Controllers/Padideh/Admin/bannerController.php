@@ -55,7 +55,7 @@ class bannerController extends Controller
     {
         $banner = $this->bannerRepo->update($request,$banner);
         if($banner){
-            return redirect()->back()->with([
+            return redirect()->route('panel.banners.index')->with([
                 'success' => 'با موفقیت ثبت شد'
             ]);
         }

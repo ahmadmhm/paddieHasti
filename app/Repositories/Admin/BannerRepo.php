@@ -30,17 +30,17 @@ class BannerRepo {
             $image = $this->uploadFile($request->image, Banner::UPLOAD_URL, 'banner_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
 
-        $cover_image = null;
-        if ($request->hasFile('cover_image')) {
-            $image = $this->uploadFile($request->cover_image, Banner::UPLOAD_URL, 'banner_cover_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+        $image_cover = null;
+        if ($request->hasFile('image_cover')) {
+            $image_cover = $this->uploadFile($request->image_cover, Banner::UPLOAD_URL, 'banner_image_cover_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
 
         return Banner::create([
             'title' => $request->title,
             'link' => $request->link,
-            'image_cover' => $cover_image,
+            'image_cover' => $image_cover,
             'image' => $image,
-            'is_active' => $request->input('is_active') ? true : false,
+            'is_active' => $request->input('access_status') ? true : false,
         ]);
 
        
@@ -64,16 +64,16 @@ class BannerRepo {
             $this->removeFile('storage', Banner::SHOW_URL.$banner->image);
             $image = $this->uploadFile($request->image, Banner::UPLOAD_URL, 'banner_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
-        $cover_image = null;
-        if ($request->hasFile('cover_image')) {
-            $this->removeFile('storage', Banner::SHOW_URL.$banner->cover_image);
-            $cover_image = $this->uploadFile($request->cover_image, Banner::UPLOAD_URL, 'banner_cover_image_', 'storage', ['png','jpeg', 'jpg', 'svg']);
+        $image_cover = null;
+        if ($request->hasFile('image_cover')) {
+            $this->removeFile('storage', Banner::SHOW_URL.$banner->image_cover);
+            $image_cover = $this->uploadFile($request->image_cover, Banner::UPLOAD_URL, 'banner_image_cover_', 'storage', ['png','jpeg', 'jpg', 'svg']);
         }
 
         return $banner->update([
             'title' => $request->title,
             'link' => $request->link,
-            'image_cover' => $cover_image ?? $banner->cover_image,
+            'image_cover' => $image_cover ?? $banner->image_cover,
             'image' => $image ?? $banner->image,
             'is_active' => $request->input('is_active') ? true : false,
         ]);

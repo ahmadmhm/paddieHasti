@@ -18,7 +18,7 @@ class CreateBannersTable extends Migration
             $table->id();
             $table->string('title')->nullable()->default(Null);
             $table->string('link')->nullable()->default(Null);
-            $table->string('image_cove')->nullable()->default(Null);
+            $table->string('image_cover')->nullable()->default(Null);
             $table->string('image')->nullable()->default(Null);
             $table->boolean('is_active')->nullable()->default(true);
             $table->softDeletes();
