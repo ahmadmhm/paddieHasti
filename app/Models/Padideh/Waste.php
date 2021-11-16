@@ -65,7 +65,7 @@ class Waste extends Model
         }
     }
 
-
+   
 
 
     //scopes

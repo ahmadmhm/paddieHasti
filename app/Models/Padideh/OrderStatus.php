@@ -15,4 +15,10 @@ class OrderStatus extends Model
     {
         return $this->hasOne(WasteOrderHead::class);
     }
+
+    public function scopeStep($query , $step) 
+    {
+        return $query->where('step',$step);
+    }
+
 }

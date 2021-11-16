@@ -30,10 +30,9 @@ class OrderStatusRepo {
     public function store($request)
     {
         return $order_status = OrderStatus::create([
-            'name' => $request->input('name'),
-            'level' => $request->input('level'),
+            'title' => $request->input('title'),
+            'step' => $request->input('step'),
             'description' => $request->input('description'),
-            'notification_dscr' => $request->input('notification_dscr'),
         ]);
     }
 

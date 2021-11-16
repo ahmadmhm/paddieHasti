@@ -19,8 +19,8 @@ class WasteOrderTable extends Model
         return $this->belongsTo(User::class , 'user_id','id');
     }
 
-    public function pasmand(){
-        return $this->belongsTo(Waste::class , 'pasmand_id');
+    public function waste(){
+        return $this->hasOne(Waste::class ,'waste_id');
     }
 
 

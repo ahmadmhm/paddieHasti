@@ -14,13 +14,11 @@
                            <table class="table table-bordered ">
                                <thead>
                                    <th>#</th>
-                                   <th>عنوان سفارش</th>
-                                   <th>نام</th>
-                                   <th>نام خانوادگی</th>
-                                   <th>شماره تماس</th>
+                                   <th>نام و نام خانوادگی</th>
                                    <th>کد سفارش</th>
                                    <th>آدرس</th>
                                    <th>ادمین</th>
+                                   <th>راننده</th>
                                    <th>وضعیت</th>
                                    <th>تاریخ دریافت</th>
                                    <th></th>
@@ -29,16 +27,34 @@
                                    @foreach ($orders as $key=>$order)
                                         <tr>
                                             <td>{{$key+1}}</td>
-                                            <td>{{$order->name}}</td>
-                                            <td>{{$order->user->name}}</td>
-                                            <td>{{$order->user->family}}</td>
-                                            <td>{{$order->user->mobile}}</td>
-                                            <td>{{$order->code}}</td>
-                                            <td>{{$order->address->id}}</td>
-                                            <td>{{$order->admin->name}}</td>
-                                            <td>{{$order->status->name}}</td>
+                                            <td>
+                                                {{$order->get_user_info()}}
+                                            </td>
+                                            <td >
+                                                <span >
+                                                    {{$order->code}}
+                                                </span>
+                                               
+                                            </td>
+                                            <td>{{$order->address->title}}</td>
+                                            <td>{{$order->admin ? $order->admin->name : '---'}}</td>
+                                            <td>
+                                                {{ $order->get_driver_info() }}
+                                            </td>
+                                            <td data-status="{{$order->status_id}}">{{$order->status ? $order->status->title : '---'}}</td>
                                             <td>{{getjalaliDate($order->delivery_date)}}</td>
-                                            <td><a href="{{route('panel.waste_orders.show',$order->id)}}" class="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer">مشاهده جزئیات سفارش</a></td>
+                                            <td>
+                                                <a href="{{route('panel.waste_orders.show',$order->id)}}" class="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer"><i class="ion-ios-eye"></i></a>
+                                                <a href="{{route('panel.waste_orders.edit',$order->id)}}" class="btn btn-primary btn-sm" ><i class="dripicons-document-edit"></i></a>
+                                                <button type="button" 
+                                                    data-id={{$order->id}}
+                                                    data-code="{{$order->code}}"
+                                                    data-route="{{route('panel.waste_orders.change_status',$order->id)}}"
+                                                    data-update="{{route('panel.waste_orders.cancel_status',$order->id)}}"
+                                                    class="btn btn-warning btn-sm btn-cancel" data-toggle="modal" data-target="#exampleModal">
+                                                    لغو سفارش
+                                                </button>
+                                            </td>
                                         </tr>
                                    @endforeach
                                </tbody>
@@ -51,4 +67,61 @@
     </div>
 </div>
 
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">
+              کد سفارش : <span class="code" id="code"></span> 
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body ">
+          <form action="" class="modal-form" name="change_status" method="post">
+              @method('put')
+              @csrf
+                <div class="col-12 col-lg-12 form-group">
+                    <label for="status_id">وضعیت</label>
+                    <select name="status_id" id="status_id" class="form-control">
+                        @foreach ($statuses as $status)
+                            <option value="{{$status->id}}">{{$status->title}}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
+          <button type="submit" class="btn btn-primary">به روز رسانی</button>
+        </div>
+    
+    </form>
+
+      </div>
+    </div>
+  </div> 
+
+
+@endsection
+
+
+@section('scripts')
+    <script>
+        $('body').on('click','.btn-cancel',function(){
+            let code = $(this).data("code");
+            let route = $(this).data("update");
+            $("#code").text(code);
+            $(".modal-form").attr("action", route)
+
+
+        })
+
+
+
+    </script>
 @endsection

@@ -24,10 +24,9 @@ class OrderStatusRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:255',
-            'level' => 'nullable|string|max:255',
+            'title' => 'required|string|max:255',
+            'step' => 'nullable|numeric',
             'description' => 'nullable|max:1000',
-            'notification_dscr' => 'nullable|max:1000',
         ];
     }
 }

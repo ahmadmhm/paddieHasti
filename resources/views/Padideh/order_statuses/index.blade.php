@@ -19,17 +19,15 @@
                                    <th>عنوان </th>
                                    <th>مرحله</th>
                                    <th>توضیحات</th>
-                                   <th>توضیحات </th>
                                    <th></th>
                                </thead>
                                <tbody>
                                    @foreach ($order_statuses as $key=>$status)
                                         <tr>
                                             <td>{{$key+1}}</td>
-                                            <td>{{$status->name}}</td>
-                                            <td>{{$status->level}}</td>
+                                            <td>{{$status->title}}</td>
+                                            <td>{{$status->step}}</td>
                                             <td>{{$status->description }}</td>
-                                            <td>{{$status->notification_dscr}}</td>
                                             <td>
                                                 <form action="{{route('panel.order_status.destroy',$status->id)}}" method="post">
                                                     @csrf

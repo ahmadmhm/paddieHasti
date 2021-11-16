@@ -2,14 +2,16 @@
 
 namespace App\Models\Padideh;
 
+use Exception;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
 
 class WasteOrderHead extends Model
 {
-    use SoftDeletes;
-
+    use SoftDeletes,Notifiable;
+    
     protected $guarded=[];
     protected $table="waste_orderheads";
 
@@ -43,13 +45,30 @@ class WasteOrderHead extends Model
     //functions
     public function getFinalPrice()
     {
-        $price = 0;
-        $price += $this->waste_orders()->sum('price');
-        return $price;
+        
+        return $this->total_price;
+        
     }
 
     public function generateCode()
     {
         return self::BASE_CODE.'-'.now()->format('Ymd').'-'.$this->id;
     }
+
+    public function get_driver_info(){
+        try{
+            return $this->driver->name.$this->driver->family.$this->driver->mobile;
+        }catch(Exception $e){
+            return 'نامشخص';
+        }
+    }
+    public function get_user_info(){
+        try{
+            return $this->user->name.$this->user->family.$this->user->mobile;
+        }catch(Exception $e){
+            return 'نامشخص';
+        }
+    }
+
+   
 }
