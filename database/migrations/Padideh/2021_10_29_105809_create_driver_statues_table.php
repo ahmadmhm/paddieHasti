@@ -15,10 +15,9 @@ class CreateDriverStatuesTable extends Migration
     {
         Schema::create('driver_statuses', function (Blueprint $table) {
             $table->id();
-            $table->string('name',10);
-            $table->string('level',10)->nullable();
+            $table->string('title',50);
+            $table->string('step',10)->nullable();
             $table->text('description')->nullable();
-            $table->text('notification_dscr')->nullable();
             $table->timestamps();
         });
     }

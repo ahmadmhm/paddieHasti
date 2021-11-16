@@ -30,10 +30,10 @@ class UpdateDriverRequest extends FormRequest
             'car_id' => 'nullable|numeric|max:100',
             'car_pelak' => 'nullable|string|max:100',
             'car_name' => 'nullable|string|max:100',
-            'shaba_number' => 'nullable|numeric|max:100',
-            'card_number' => 'nullable|numeric|max:100',
-            'image' => 'nullable|string|max:100',
-            'is_active' => 'nullable|boolean',
+            'shaba_number' => 'nullable|numeric',
+            'card_number' => 'nullable|numeric',
+            'image' => 'nullable',
+            'is_active' => 'nullable',
         ];
     }
 }

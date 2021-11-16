@@ -42,6 +42,14 @@ class Driver extends Model
             return '#';
         }
     }
+    public function get_driver_status()
+    {
+        try{
+            return $this->driver_status->title;
+        }catch(Exception $e){
+            return 'نامشخص';
+        }
+    }
 
     function getImageSrc($image = '', $template = 'original')
     {
@@ -50,10 +58,33 @@ class Driver extends Model
         }
         return null;
     }
+
     public function getImage()
     {
         return $this->image ? self::SHOW_URL.$this->image : 'previewImage.gif';
     }
+
+    public function getCmImage()
+    {
+        return $this->cm_image ? self::SHOW_URL.$this->cm_image : 'previewImage.gif';
+    }
+
+    public function getCertificateImage()
+    {
+        return $this->certificate_image ? self::SHOW_URL.$this->certificate_image : 'previewImage.gif';
+    }
+
+
+    public function getCarCartImage()
+    {
+        return $this->car_cart_image ? self::SHOW_URL.$this->car_cart_image : 'previewImage.gif';
+    }
+
+    public function driver_status()
+    {
+        return $this->belongsTo(DriverStatus::class,'status_id');
+    }
+    
 
 
 

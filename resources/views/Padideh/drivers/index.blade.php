@@ -21,6 +21,7 @@
                             <th>شماره تماس</th>
                             <th>نام ماشین</th>
                             <th>وضعیت</th>
+                            <th>وضعیت مدارک</th>
                             <th>تاریخ ثبت نام</th>
                             <th></th>
                         </tr>
@@ -38,6 +39,7 @@
                             <td>{{$driver->mobile ?: '---'}}</td>
                             <td>{{$driver->car_name ?: '---'}}</td>
                             <td>{!!$driver->get_status() !!}</td>
+                            <td>{!!$driver->get_driver_status() !!}</td>
                             <td>{{getjalaliDate($driver->created_at)}}</td>
                             <td>
                                 <div class="d-flex justify-content-center">

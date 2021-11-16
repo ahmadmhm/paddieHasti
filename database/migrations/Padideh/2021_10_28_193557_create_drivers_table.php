@@ -26,9 +26,15 @@ class CreateDriversTable extends Migration
             $table->string('shaba_number',26)->nullable();
             $table->string('card_number',20)->nullable();
             $table->string('image',100)->nullable();
+            $table->string('cm_image',100)->nullable();
+            $table->string('certificate_image',100)->nullable();
+            $table->string('car_cart_image',100)->nullable();
             $table->boolean('is_active')->default(true);
+            $table->unsignedBigInteger('status_id')->nullabl()->default(Null);
             $table->softDeletes();
             $table->timestamps();
+            $table->foreign('status_id')->references('id')->on('driver_statuses');
+
         });
     }
 
