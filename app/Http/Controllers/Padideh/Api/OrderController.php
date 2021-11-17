@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Padideh\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Padideh\Api\StoreWasteOrderHead;
 use App\Http\Resources\Padideh\WasteOrderHeadResource;
+use App\Models\Padideh\WasteOrder;
+use App\Models\Padideh\WasteOrderHead;
 use App\Repositories\Admin\OrderRepository;
 use Illuminate\Http\Request;
 
@@ -35,6 +37,10 @@ class OrderController extends Controller
         return $this->failedResponse('w', 'سفارش ثبت نشد دوباره تلاش کنید');
     }
 
+    public function cancelOrder(WasteOrderHead $waste_order)
+    {
+        return $this->orderRepository->cancelOrder($waste_order);
+    }
 
 }
 

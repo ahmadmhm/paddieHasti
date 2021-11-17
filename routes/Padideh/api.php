@@ -49,7 +49,7 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
         //orders
 
         Route::apiResource('orders','OrderController');
-
+        Route::get('cancel_orders/{waste_order}','OrderController@cancelOrder');
 
     });
 });

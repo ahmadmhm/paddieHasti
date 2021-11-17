@@ -150,11 +150,12 @@ class OrderRepository {
     public function cancelStatus($request ,$waste_order)
     {
         event(new WasteOrderUpdated($waste_order,$request->status_id));
+        return $waste_order;
+    }
 
-        // $waste_order->update([
-        //     'status_id' => $request->status_id
-        // ]);
-
+    public function cancelOrder($waste_order)
+    {
+        event(new WasteOrderUpdated($waste_order,7));
         return $waste_order;
     }
 
