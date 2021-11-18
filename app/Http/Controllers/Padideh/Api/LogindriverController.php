@@ -11,7 +11,7 @@ use App\Models\Padideh\UserVerificationCode;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
-class LogindriverController extends Controller
+class LoginDriverController extends Controller
 {
     use SmsIrTrait, DriverTrait;
 
