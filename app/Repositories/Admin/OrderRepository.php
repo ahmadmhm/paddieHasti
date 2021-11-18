@@ -22,8 +22,8 @@ class OrderRepository {
     }
 
     public function show($waste_order)
-    {       
-       $waste_order=$waste_order->with('orders')->first(); 
+    {
+       $waste_order=$waste_order->with('orders')->first();
         return view('Padideh.orders.show')->with([
             'waste_order' => $waste_order
         ]);
@@ -31,8 +31,8 @@ class OrderRepository {
 
 
     public function edit($waste_order)
-    {       
-       $waste_order=$waste_order->with('orders')->first(); 
+    {
+       $waste_order=$waste_order->with('orders')->first();
        $drivers = Driver::all();
        $statuses = OrderStatus::all();
         return view('Padideh.orders.edit')->with([
@@ -82,7 +82,7 @@ class OrderRepository {
         })->latest()->paginate(20);
 
         return $waste_orders;
-       
+
     }
 
 
@@ -145,18 +145,18 @@ class OrderRepository {
         $orderHead->orders()->insert($inserts);
         return $orderHead;
     }
-  
 
-    public function cancelStatus($request ,$waste_order)
+
+    public function cancelStatus($request ,$orderHead)
     {
-        event(new WasteOrderUpdated($waste_order,$request->status_id));
-        return $waste_order;
+        event(new WasteOrderUpdated($orderHead,$request->status_id));
+        return $orderHead;
     }
 
-    public function cancelOrder($waste_order)
+    public function cancelOrderHead($orderHead)
     {
-        event(new WasteOrderUpdated($waste_order,7));
-        return $waste_order;
+        event(new WasteOrderUpdated($orderHead,7));
+        return $orderHead;
     }
 
 

@@ -11,7 +11,7 @@ use Illuminate\Notifications\Notifiable;
 class WasteOrderHead extends Model
 {
     use SoftDeletes,Notifiable;
-    
+
     protected $guarded=[];
     protected $table="waste_orderheads";
 
@@ -42,12 +42,15 @@ class WasteOrderHead extends Model
         return $this->belongsTo(Address::class,'address_id');
     }
 
+    //scopes
+
+
+
     //functions
     public function getFinalPrice()
     {
-        
         return $this->total_price;
-        
+
     }
 
     public function generateCode()
@@ -62,13 +65,14 @@ class WasteOrderHead extends Model
             return 'نامشخص';
         }
     }
-    public function get_user_info(){
-        try{
-            return $this->user->name.$this->user->family.$this->user->mobile;
-        }catch(Exception $e){
-            return 'نامشخص';
+    public function getUserInfo(){
+        $name = '';
+        if ($this->user) {
+            $name = $this->user->name.' '.$this->user->family.' '.$this->user->mobile;
         }
+
+        return $name;
     }
 
-   
+
 }

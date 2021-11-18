@@ -13,7 +13,7 @@
                        <div class="justify-content-center align-items-center d-flex">
                            <table class="table table-bordered ">
                                <thead>
-                                   <th>#</th>
+                                   <th>ردیف</th>
                                    <th>نام و نام خانوادگی</th>
                                    <th>کد سفارش</th>
                                    <th>آدرس</th>
@@ -28,13 +28,13 @@
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>
-                                                {{$order->get_user_info()}}
+                                                {{$order->getUserInfo()}}
                                             </td>
                                             <td >
                                                 <span >
                                                     {{$order->code}}
                                                 </span>
-                                               
+
                                             </td>
                                             <td>{{$order->address->title}}</td>
                                             <td>{{$order->admin ? $order->admin->name : '---'}}</td>
@@ -44,13 +44,13 @@
                                             <td data-status="{{$order->status_id}}">{{$order->status ? $order->status->title : '---'}}</td>
                                             <td>{{getjalaliDate($order->delivery_date)}}</td>
                                             <td>
-                                                <a href="{{route('panel.waste_orders.show',$order->id)}}" class="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer"><i class="ion-ios-eye"></i></a>
-                                                <a href="{{route('panel.waste_orders.edit',$order->id)}}" class="btn btn-primary btn-sm" ><i class="dripicons-document-edit"></i></a>
-                                                <button type="button" 
+                                                <a href="{{route('panel.orders.show',$order->id)}}" class="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer"><i class="ion-ios-eye"></i></a>
+                                                <a href="{{route('panel.orders.edit',$order->id)}}" class="btn btn-primary btn-sm" ><i class="dripicons-document-edit"></i></a>
+                                                <button type="button"
                                                     data-id={{$order->id}}
                                                     data-code="{{$order->code}}"
-                                                    data-route="{{route('panel.waste_orders.change_status',$order->id)}}"
-                                                    data-update="{{route('panel.waste_orders.cancel_status',$order->id)}}"
+                                                    data-route="{{route('panel.orders.change_status',$order->id)}}"
+                                                    data-update="{{route('panel.orders.cancel_status',$order->id)}}"
                                                     class="btn btn-warning btn-sm btn-cancel" data-toggle="modal" data-target="#exampleModal">
                                                     لغو سفارش
                                                 </button>
@@ -75,7 +75,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">
-              کد سفارش : <span class="code" id="code"></span> 
+              کد سفارش : <span class="code" id="code"></span>
           </h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -99,12 +99,12 @@
           <button type="button" class="btn btn-secondary" data-dismiss="modal">لغو</button>
           <button type="submit" class="btn btn-primary">به روز رسانی</button>
         </div>
-    
+
     </form>
 
       </div>
     </div>
-  </div> 
+  </div>
 
 
 @endsection

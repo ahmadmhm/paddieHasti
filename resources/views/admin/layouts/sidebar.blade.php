@@ -18,7 +18,7 @@
                 <li>
                     <a href="{{route('panel.users.index')}}" class="waves-effect"><i class="dripicons-user-group"></i><span> کاربران </span></a>
                 </li>
-               
+
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-bullhorn"></i><span> محصولات فروشگاه <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
@@ -46,16 +46,7 @@
                         <li><a href="{{route('panel.articles.index')}}">محتوا</a></li>
                     </ul>
                 </li>
-                <li>
-                    <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-shopify"></i><span>  سفارشات <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
-                    <ul class="submenu">
-                        <li><a href="{{route('panel.waste_orders.index')}}">لیست سفارشات</a></li>
-                        <li><a href="{{route('panel.waste_orders.watting_confirm')}}">سفارشات منتظر تایید</a></li>
-                        <li><a href="{{route('panel.waste_orders.order_process')}}">سفارشات در حال اجرا</a></li>
-                        <li><a href="{{route('panel.waste_orders.watting_driver')}}">سفارشات منتظر راننده</a></li>
-                        <li><a href="{{route('panel.order_status.index')}}">وضعیت سفارش</a></li>
-                    </ul>
-                </li>
+                @include('Padideh.padideh-sidebar')
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-to-do"></i><span> رانندگان <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
@@ -63,7 +54,7 @@
                         <li><a href="{{route('panel.driver_status.index')}}">وضعیت </a></li>
                     </ul>
                 </li>
-               
+
                 <li>
                     <a href="{{route('panel.users.index')}}" class="waves-effect"><i class="dripicons-user-group"></i><span> تنظیمات </span></a>
                 </li>

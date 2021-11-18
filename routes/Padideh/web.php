@@ -31,15 +31,16 @@ Route::group(['namespace'=>'Padideh\Admin','middleware'=>'auth:admin'],function(
             Route::resource('stories','StoryController');
             Route::resource('article_categories','ArticleCategoryController')->only('index','create','store','destroy');
             Route::resource('articles','ArticleController');
-            Route::resource('waste_orders','OrderController')->only('index','show','edit','update');
 
-            Route::get('orders/watting_confirm','OrderController@watting_confirm')->name('waste_orders.watting_confirm');
-            Route::get('orders/order_process','OrderController@process')->name('waste_orders.order_process');
-            Route::get('orders/watting_driver','OrderController@watting_driver')->name('waste_orders.watting_driver');
-            Route::get('orders/cancel/{waste_order}','OrderController@cancel')->name('waste_orders.cancel');
-            Route::get('orders/change_status/{waste_order}','OrderController@cancel')->name('waste_orders.change_status');
-            Route::put('orders/change_status/{waste_order}','OrderController@cancelStatus')->name('waste_orders.cancel_status');
-            
+            Route::resource('orders','OrderController');
+
+            Route::get('orders/watting_confirm','OrderController@watting_confirm')->name('orders.watting_confirm');
+            Route::get('orders/order_process','OrderController@process')->name('orders.order_process');
+            Route::get('orders/watting_driver','OrderController@watting_driver')->name('orders.watting_driver');
+            Route::get('orders/cancel/{waste_order}','OrderController@cancel')->name('orders.cancel');
+            Route::get('orders/change_status/{waste_order}','OrderController@cancel')->name('orders.change_status');
+            Route::put('orders/change_status/{waste_order}','OrderController@cancelStatus')->name('orders.cancel_status');
+
             Route::resource('order_status','OrderStatusController')->only('index','store','destroy','create');
             Route::resource('drivers','DriverController');
             Route::resource('driver_status','DriverStatusController')->only('index','store','destroy');

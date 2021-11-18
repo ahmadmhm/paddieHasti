@@ -37,9 +37,9 @@ class OrderController extends Controller
         return $this->failedResponse('w', 'سفارش ثبت نشد دوباره تلاش کنید');
     }
 
-    public function cancelOrder(WasteOrderHead $waste_order)
+    public function cancelOrder(WasteOrderHead $order)
     {
-        return $this->orderRepository->cancelOrder($waste_order);
+        return $this->orderRepository->cancelOrderHead($order);
     }
 
 }

@@ -13,16 +13,16 @@
     <div class="d-flex justify-content-between align-items-center p-2">
         <strong class="font-weight-bold" style="font-size:20px">مشاهده جزئیات سفارش</strong>
 
-        <a class="btn btn-secondary waves-effect waves-light" href="{{route('panel.waste_orders.index')}}">بازگشت</a>
+        <a class="btn btn-secondary waves-effect waves-light" href="{{route('panel.orders.index')}}">بازگشت</a>
     </div>
-  
+
 
 </div>
 <div class="content">
     <div class="container-fluid">
         <div class="card bg-white mb-4 shadow-sm rounded p-4">
-            <form action="{{route('panel.waste_orders.update',$waste_order->id)}}" method="post">
-                @method('put')
+            <form action="{{route('panel.orders.update',$waste_order->id)}}" method="post">
+                @method('patch')
                 @csrf
                 <div class="row">
                     <div class="col-12 col-lg-4 form-group">
@@ -37,7 +37,7 @@
                             @endforeach
                         </select>
                     </div>
-                   
+
                     <div class="col-12 col-lg-4 form-group">
                         <label for="status_id">وضعیت</label>
                         <select name="status_id" id="status_id" class="form-control">
@@ -46,7 +46,7 @@
                             @endforeach
                         </select>
                     </div>
-                  
+
                     <div class="form-group col-4 form-group">
                         <label for="delivery_date_picker">تاریخ دریافت</label>
                         <input type="text" class="form-control"  autocomplete="off" id="delivery_date_picker">

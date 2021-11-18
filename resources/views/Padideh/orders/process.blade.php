@@ -28,7 +28,7 @@
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>
-                                                {{$order->get_user_info()}}
+                                                {{$order->getUserInfo()}}
                                             </td>
                                             <td>{{$order->code}}</td>
                                             <td>{{$order->address->title}}</td>
