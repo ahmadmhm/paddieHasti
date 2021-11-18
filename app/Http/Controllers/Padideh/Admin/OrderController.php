@@ -9,33 +9,33 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
-    private $order_repo;
+    private $orderRepository;
 
-    public function __construct(OrderRepository $order_repo)
+    public function __construct(OrderRepository $orderRepository)
     {
-        $this->order_repo = $order_repo;
+        $this->orderRepository = $orderRepository;
     }
 
     public function index()
     {
-        return $this->order_repo->all();
+        return $this->orderRepository->all();
     }
 
-    public function show(WasteOrderHead $waste_order)
+    public function show(WasteOrderHead $orderHead)
     {
-        return $this->order_repo->show($waste_order);
+        return $this->orderRepository->show($orderHead);
     }
 
 
-    public function edit(WasteOrderHead $waste_order)
+    public function edit(WasteOrderHead $orderHead)
     {
-        return $this->order_repo->edit($waste_order);
+        return $this->orderRepository->edit($orderHead);
     }
 
 
     public function update(Request $request,WasteOrderHead $waste_order)
     {
-        $waste_order = $this->order_repo->update($request,$waste_order);
+        $waste_order = $this->orderRepository->update($request,$waste_order);
         if($waste_order)
         {
             return \redirect()->route('panel.waste_orders.index')->with([
@@ -46,7 +46,7 @@ class OrderController extends Controller
 
     public function watting_confirm()
     {
-        $waste_orders = $this->order_repo->watting_confirm();
+        $waste_orders = $this->orderRepository->watting_confirm();
         return view('Padideh.orders.watting_confirm')->with([
             'waste_orders' => $waste_orders
         ]);
@@ -54,7 +54,7 @@ class OrderController extends Controller
 
     public function process()
     {
-        $waste_orders = $this->order_repo->process();
+        $waste_orders = $this->orderRepository->process();
         return view('Padideh.orders.process')->with([
             'waste_orders' => $waste_orders
         ]);
@@ -62,7 +62,7 @@ class OrderController extends Controller
 
     public function watting_driver()
     {
-        $waste_orders = $this->order_repo->watting_driver();
+        $waste_orders = $this->orderRepository->watting_driver();
         return view('Padideh.orders.watting_driver')->with([
             'waste_orders' => $waste_orders
         ]);
@@ -70,7 +70,7 @@ class OrderController extends Controller
 
     public function cancel(Request $request,WasteOrderHead $waste_order)
     {
-        $waste_order =  $this->order_repo->cancel($request,$waste_order);
+        $waste_order =  $this->orderRepository->cancel($request,$waste_order);
 
         if($waste_order)
         {
@@ -83,7 +83,7 @@ class OrderController extends Controller
     public function cancelStatus(Request $request,WasteOrderHead $waste_order)
     {
         // dd($request->all());
-        $waste_order = $this->order_repo->cancelStatus($request,$waste_order);
+        $waste_order = $this->orderRepository->cancelStatus($request,$waste_order);
         if($waste_order)
         {
             return \redirect()->back()->with([
