@@ -23,6 +23,13 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
         Route::post('login', 'LoginController@login');
         Route::post('register', 'LoginController@register');
     });
+    //auth driver
+    Route::group(['prefix' => '/auth/driver', ],function()
+    {
+        Route::post('verification', 'LoginDriverController@verification');
+        Route::post('login', 'LoginDriverController@login');
+        Route::post('register', 'LoginDriverController@register');
+    });
     Route::group(['middleware' => ['auth:api'], ''],function() {
         //auth
         Route::post('auth/logout', 'LoginController@logout');
@@ -52,4 +59,7 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
         Route::get('cancel_orders/{waste_order}','OrderController@cancelOrder');
 
     });
+
+
+
 });
