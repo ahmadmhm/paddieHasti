@@ -4,7 +4,7 @@
 <div class="content p-2">
     <div class="d-flex justify-content-between align-items-center p-2">
         <h3>لیست رانندگان</h3>
-        <a class="btn btn-info" href="{{route('panel.drivers.create')}}">ایجاد راننده</a>
+        <a class="btn btn-info" href="{{route('panel.drivers.lists.create')}}">ایجاد راننده</a>
     </div>
     <div class="row">
         <div class="col-12">
@@ -43,9 +43,9 @@
                             <td>{{getjalaliDate($driver->created_at)}}</td>
                             <td>
                                 <div class="d-flex justify-content-center">
-                                    <a class="btn btn-info btn-sm" href="{{route('panel.drivers.show',$driver->id)}}"><i class="ion-ios-eye"></i></a>
-                                    <a class="btn btn-success btn-sm" href="{{route('panel.drivers.edit',$driver->id)}}"><i class="dripicons-document-edit"></i></a>
-                                    <form action="{{route('panel.drivers.destroy',$driver->id)}}" method="post">
+                                    <a class="btn btn-info btn-sm" href="{{route('panel.drivers.lists.show',$driver->id)}}"><i class="ion-ios-eye"></i></a>
+                                    <a class="btn btn-success btn-sm" href="{{route('panel.drivers.lists.edit',$driver->id)}}"><i class="dripicons-document-edit"></i></a>
+                                    <form action="{{route('panel.drivers.lists.destroy',$driver->id)}}" method="post">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" onclick="return confirm('آیا مطمعن هستید؟')" class="btn btn-sm btn-danger"><i class="ion-ios-trash"></i></button>

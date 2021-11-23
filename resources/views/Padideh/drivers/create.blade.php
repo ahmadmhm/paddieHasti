@@ -4,13 +4,13 @@
 <div class="content p-2">
     <div class="d-flex justify-content-between align-items-center p-2">
         <h3>ثبت راننده جدید</h3>
-        <a class="btn btn-secondary waves-effect waves-light" href="{{route('panel.drivers.index')}}">بازگشت</a>
+        <a class="btn btn-secondary waves-effect waves-light" href="{{route('panel.drivers.lists.index')}}">بازگشت</a>
     </div>
     <div class="row">
         <div class="col-12">
             <div class="card p-2">
                 @include('components.messages')
-                <form action="{{route('panel.drivers.store')}}" enctype="multipart/form-data" method="post">
+                <form action="{{route('panel.drivers.lists.store')}}" enctype="multipart/form-data" method="post">
                     @csrf
                     <div class="row">
                         <div class="col-12 col-lg-4 form-group">

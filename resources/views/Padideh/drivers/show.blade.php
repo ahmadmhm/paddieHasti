@@ -3,7 +3,7 @@
 @section('content')
 <div class="content p-2">
     <div class="d-flex justify-content-end align-items-center p-2">
-        <a class="btn btn-secondary waves-effect waves-light" href="{{route('panel.drivers.index')}}">بازگشت</a>
+        <a class="btn btn-secondary waves-effect waves-light" href="{{route('panel.drivers.lists.index')}}">بازگشت</a>
     </div>
       <div class="row">
         <div class="col-12">
