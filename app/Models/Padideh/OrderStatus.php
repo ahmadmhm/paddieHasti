@@ -4,10 +4,11 @@ namespace App\Models\Padideh;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class OrderStatus extends Model
 {
-    use HasFactory;
+    use HasFactory,Notifiable;
     protected $table="order_statuses";
     protected $guarded=[];
 

@@ -7,24 +7,22 @@ use App\Models\Padideh\OrderStatus;
 class OrderStatusRepo {
 
     public function all(){
-        $order_statuses = OrderStatus::all();
-        return view('Padideh.order_statuses.index')->with([
-            'order_statuses' => $order_statuses
-        ]);
+        return $orderStatuses = OrderStatus::latest()->paginate(20);
+       
     }
 
 
-    public function show($order_status)
+    public function show($orderStatus)
     {
-        return view('Padideh.order_statuses.show')->with([
-            'order_status' => $order_status
+        return view('Padideh.order-statuses.show')->with([
+            'orderStatus' => $orderStatus
         ]);
     }
 
 
     public function create()
     {
-        return view('Padideh.order_statuses.create');
+        return view('Padideh.order-statuses.create');
     }
 
     public function store($request)
@@ -36,9 +34,9 @@ class OrderStatusRepo {
         ]);
     }
 
-    public function destroy($order_status)
+    public function destroy($ordeStatus)
     {
-        return $order_status->delete();
+        return $ordeStatus->delete();
     }
 
 

@@ -6,33 +6,35 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Padideh\Admin\OrderStatusRequest;
 use App\Models\Padideh\OrderStatus;
 use App\Repositories\Admin\OrderStatusRepo;
-use Illuminate\Http\Request;
 
 class OrderStatusController extends Controller
 {
-    private $order_status_repo;
+    private $orderStatusRepo;
 
-    public function __construct(OrderStatusRepo $order_status_repo){
-        $this->order_status_repo = $order_status_repo;
+    public function __construct(OrderStatusRepo $orderStatusRepo){
+        $this->orderStatusRepo = $orderStatusRepo;
     }
     public function index()
     {
-        return $this->order_status_repo->all();
+        $orderStatuses = $this->orderStatusRepo->all();
+        return view('Padideh.order-statuses.index')->with([
+            'orderStatuses' => $orderStatuses
+        ]);
     }
 
     
     public function create()
     {
-        return $this->order_status_repo->create();
+        return $this->orderStatusRepo->create();
     }
 
     
     public function store(OrderStatusRequest $request)
     {
-        $order_status = $this->order_status_repo->store($request);
-        if($order_status)
+        $status = $this->orderStatusRepo->store($request);
+        if($status)
         {
-            return redirect()->route('panel.order_status.index')->with([
+            return redirect()->route('panel.orders.statuses.index')->with([
                 'success' => 'با موفقیت ثبت شد'
             ]);
         }
@@ -41,11 +43,11 @@ class OrderStatusController extends Controller
 
 
    
-    public function destroy(OrderStatus $order_status)
+    public function destroy(OrderStatus $status)
     {
-        $result =  $this->order_status_repo->destroy($order_status);
+        $result =  $this->orderStatusRepo->destroy($status);
         if ($result) {
-            return \redirect()->back()->with([
+            return redirect()->back()->with([
                 'success' => 'با موفقیت ثبت شد'
             ]);
         }

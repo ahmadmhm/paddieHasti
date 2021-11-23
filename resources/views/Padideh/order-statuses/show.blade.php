@@ -5,7 +5,7 @@
     <div class="d-flex justify-content-between align-items-center p-2">
         <strong class="font-weight-bold" style="font-size:20px">مشاهده جزئیات سفارش</strong>
 
-        <a class="btn btn-secondary waves-effect waves-light" href="{{route('panel.waste_orders.index')}}">بازگشت</a>
+        <a class="btn btn-secondary waves-effect waves-light" href="{{route('panel.orders.statuses.index')}}">بازگشت</a>
     </div>
   
 

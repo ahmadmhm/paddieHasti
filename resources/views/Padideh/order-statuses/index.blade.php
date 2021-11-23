@@ -4,7 +4,7 @@
 <div class="content p-2">
     <div class="d-flex justify-content-between align-items-center p-2">
         <strong class="font-weight-bold" style="font-size:20px">مشاهده وضعیت سفارش ها </strong>
-        <a href="{{route('panel.order_status.create')}}" class="btn btn-info">ایجاد وضعیت جدید</a>
+        <a href="{{route('panel.orders.statuses.create')}}" class="btn btn-info">ایجاد وضعیت جدید</a>
 
     </div>
     <div class="row">
@@ -22,14 +22,14 @@
                                    <th></th>
                                </thead>
                                <tbody>
-                                   @foreach ($order_statuses as $key=>$status)
+                                   @foreach ($orderStatuses as $key=>$status)
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>{{$status->title}}</td>
                                             <td>{{$status->step}}</td>
                                             <td>{{$status->description }}</td>
                                             <td>
-                                                <form action="{{route('panel.order_status.destroy',$status->id)}}" method="post">
+                                                <form action="{{route('panel.orders.statuses.destroy',$status->id)}}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('آیا مایل به حذف هستید؟')" ><i class="ion-ios-trash"></i></button>
