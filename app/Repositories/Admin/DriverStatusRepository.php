@@ -8,21 +8,21 @@ class DriverStatusRepository{
 
     public function index()
     {
-        return $driver_statues = DriverStatus::latest()->paginate(20);
+        return  DriverStatus::latest()->paginate(20);
     }
 
     public function store($request)
     {
-        return $driver_status = DriverStatus::create([
+        return  DriverStatus::create([
             'title' => $request->title,
             'step' => $request->step,
             'description' => $request->description,
         ]);
     }
 
-    public function destroy($driver_status)
+    public function destroy($status)
     {
-        return $driver_status->delete();
+        return $status->delete();
 
     }
 
