@@ -17,14 +17,14 @@
                 <div class="bg-white shadow-sm rounded mb-4 p-3">
                     <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
                         <span>وزن سفارش :</span>
-                        @foreach ($waste_order->orders as $item)
+                        @foreach ($order->orders as $item)
                             <span class="fa-num">{{ number_format($item->weight , 3) }} کیلوگرم</span>
 
                         @endforeach
                     </div>
                     <div class="d-flex justify-content-between align-items-center flex-wrap mb-3">
                         <span>مبلغ سفارش :</span>
-                        @foreach ($waste_order->orders as $item)
+                        @foreach ($order->orders as $item)
                             <span class="fa-num">{{ number_format($item->price) }} تومان</span>
                         @endforeach
 
@@ -32,7 +32,7 @@
                     <hr/>
                     <div class="d-flex justify-content-between align-items-center flex-wrap text-dark">
                         <strong>مبلغ قابل پرداخت :</strong>
-                        <strong class="fa-num">{{ number_format($waste_order->getFinalPrice()) }} تومان</strong>
+                        <strong class="fa-num">{{ number_format($order->getFinalPrice()) }} تومان</strong>
                     </div>
                 </div>
 
@@ -45,38 +45,38 @@
                             <tr>
                                 <td>
                                     <span class="text-secondary">کد سفارش :</span>
-                                    <strong class="fa-num">{{ $waste_order->code }}</strong>
+                                    <strong class="fa-num">{{ $order->code }}</strong>
                                 </td>
                                 <td>
                                     <span class="text-secondary">وضعیت :</span>
-                                    <strong>{{ $waste_order->status ? $waste_order->status->title : '---'}}</strong>
+                                    <strong>{{ $order->status ? $order->status->title : '---'}}</strong>
                                 </td>
                                 <td>
                                     <span class="text-secondary">تاریخ ثبت :</span>
-                                    <strong>{{ getjalaliDate($waste_order->created_at) }}</strong>
+                                    <strong>{{ getjalaliDate($order->created_at) }}</strong>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td>
                                     <span class="text-secondary">نام و نام خانوادگی :</span>
-                                    <strong>{{ $waste_order->user ? $waste_order->user->name : '---' }}</strong>
+                                    <strong>{{ $order->user ? $order->user->name : '---' }}</strong>
                                 </td>
 
                                 <td>
                                     <span class="text-secondary">شماره موبایل :</span>
-                                    <strong>{{ $waste_order->user ? $waste_order->user->mobile : '---' }}</strong>
+                                    <strong>{{ $order->user ? $order->user->mobile : '---' }}</strong>
                                 </td>
                                 <td>
                                     <span class="text-secondary">تاریخ دریافت :</span>
-                                    <strong>{{ getjalaliDate($waste_order->delivery_date) }}</strong>
+                                    <strong>{{ getjalaliDate($order->delivery_date) }}</strong>
                                 </td>
                             </tr>
 
                             <tr>
                                 <td colspan="3">
                                     <span class="text-secondary">آدرس :</span>
-                                    <strong>{{ $waste_order->address ? $waste_order->address->address : '---' }}</strong>
+                                    <strong>{{ $order->address ? $order->address->address : '---' }}</strong>
                                 </td>
                             </tr>
 
@@ -87,18 +87,18 @@
                 </div>
                 <div class="mb-4">
                     <div class="row">
-                         @foreach($waste_order->orders as $waste_item)
+                         @foreach($order->orders as $item)
                             <div class="col-12 col-lg-12">
                                 <div class="p-2 bg-white d-flex shadow-sm bwaste rounded bwaste-gray-200 mb-3">
-                                    {{-- <img src="{{$waste_item->waste->getImage() ?: ''}}" width="30px" height="30" class="rounded-circle" alt=""> --}}
+                                    {{-- <img src="{{$item->waste->getImage() ?: ''}}" width="30px" height="30" class="rounded-circle" alt=""> --}}
                                     <div class="d-flex flex-grow-1 flex-column justify-content-between">
                                         <div>
-                                            <p class="m-0">{{ $waste_item->pasmand ? $waste_item->pasmand->name : '---' }}</p>
+                                            <p class="m-0">{{ $item->pasmand ? $item->pasmand->name : '---' }}</p>
 
                                         </div>
                                         <div class="d-flex justify-content-between align-items-center text-gray-500 fa-num">
-                                            <small>{{ $waste_item->weight }} {{$waste_item->vahed}}</small>
-                                             <small>{{ number_format($waste_item->price) }} تومان</small>
+                                            <small>{{ $item->weight }} {{$item->vahed}}</small>
+                                             <small>{{ number_format($item->price) }} تومان</small>
                                         </div>
                                     </div>
                                 </div>

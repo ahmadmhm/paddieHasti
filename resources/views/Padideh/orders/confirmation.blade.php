@@ -24,7 +24,7 @@
                                    <th></th>
                                </thead>
                                <tbody>
-                                   @foreach ($waste_orders as $key=>$order)
+                                   @foreach ($wasteOrders as $key=>$order)
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>
@@ -39,8 +39,8 @@
                                             <td>{{$order->status->title ?: '---'}}</td>
                                             <td>{{getjalaliDate($order->delivery_date)}}</td>
                                             <td>
-                                                <a href="{{route('panel.waste_orders.show',$order->id)}}" class="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer">مشاهده جزئیات سفارش</a>
-                                                <a href="{{route('panel.waste_orders.edit',$order->id)}}" class="btn btn-primary btn-sm" >ویرایش سفارش</a>
+                                                <a href="{{route('panel.orders.show',$order->id)}}" class="btn btn-success btn-sm" target="_blank" rel="noopener noreferrer">مشاهده جزئیات سفارش</a>
+                                                <a href="{{route('panel.orders.edit',$order->id)}}" class="btn btn-primary btn-sm" >ویرایش سفارش</a>
                                             </td>
                                         </tr>
                                    @endforeach
@@ -56,3 +56,4 @@
 
 @endsection
 
+ 

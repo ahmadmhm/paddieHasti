@@ -21,38 +21,36 @@ class OrderController extends Controller
         return $this->orderRepository->all();
     }
 
-    public function show(WasteOrderHead $orderHead)
+    public function show(WasteOrderHead $order)
     {
-        return $this->orderRepository->show($orderHead);
+        return $this->orderRepository->show($order);
     }
 
 
-    public function edit(WasteOrderHead $orderHead)
+    public function edit(WasteOrderHead $order)
     {
-        return $this->orderRepository->edit($orderHead);
+        return $this->orderRepository->edit($order);
     }
 
 
-    public function update(Request $request,WasteOrderHead $waste_order)
+    public function update(Request $request,WasteOrderHead $order)
     {
-        $waste_order = $this->orderRepository->update($request,$waste_order);
-        if($waste_order)
+        $order = $this->orderRepository->update($request,$order);
+        if($order)
         {
-            return \redirect()->route('panel.waste_orders.index')->with([
+            return \redirect()->route('panel.orders.index')->with([
                 'success' => 'با موفقیت ثبت شد'
             ]);
         }
     }
 
-    public function watting_confirm()
+    public function confirmations()
     {
-        $waste_orders = $this->orderRepository->watting_confirm();
-        return view('Padideh.orders.watting_confirm')->with([
-            'waste_orders' => $waste_orders
-        ]);
+        $wasteOrders = $this->orderRepository->confirmation();
+        return view('Padideh.orders.confirmation',compact('wasteOrders'));
     }
 
-    public function process()
+    public function waitingProcess()
     {
         $waste_orders = $this->orderRepository->process();
         return view('Padideh.orders.process')->with([
@@ -60,7 +58,7 @@ class OrderController extends Controller
         ]);
     }
 
-    public function watting_driver()
+    public function wattingDriver()
     {
         $waste_orders = $this->orderRepository->watting_driver();
         return view('Padideh.orders.watting_driver')->with([
@@ -68,23 +66,12 @@ class OrderController extends Controller
         ]);
     }
 
-    public function cancel(Request $request,WasteOrderHead $waste_order)
-    {
-        $waste_order =  $this->orderRepository->cancel($request,$waste_order);
+    
 
-        if($waste_order)
-        {
-            return \redirect()->back()->with([
-                'success' => 'وضعیت سفارش تغییر کرد'
-            ]);
-        }
-    }
-
-    public function cancelStatus(Request $request,WasteOrderHead $waste_order)
+    public function changeStatus(Request $request,WasteOrderHead $order)
     {
-        // dd($request->all());
-        $waste_order = $this->orderRepository->cancelStatus($request,$waste_order);
-        if($waste_order)
+        $order = $this->orderRepository->ChangeStatus($request,$order);
+        if($order)
         {
             return \redirect()->back()->with([
                 'success' => 'وضعیت سفارش تغییر کرد'

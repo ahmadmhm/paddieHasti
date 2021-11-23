@@ -21,13 +21,13 @@
 <div class="content">
     <div class="container-fluid">
         <div class="card bg-white mb-4 shadow-sm rounded p-4">
-            <form action="{{route('panel.orders.update',$waste_order->id)}}" method="post">
+            <form action="{{route('panel.orders.update',$order->id)}}" method="post">
                 @method('patch')
                 @csrf
                 <div class="row">
                     <div class="col-12 col-lg-4 form-group">
                         <label for="code">کد سفارش</label>
-                        <input type="text" name="code" id="code" class="form-control" value="{{$waste_order->code}}">
+                        <input type="text" name="code" id="code" class="form-control" value="{{$order->code}}">
                     </div>
                     <div class="col-12 col-lg-4 form-group">
                         <label for="driver_id">راننده</label>
@@ -55,7 +55,7 @@
                     <div class="col-12 col-lg-4 form-group">
                         <label for="address_id">آدرس</label>
                         <select name="address_id" id="address_id" class="form-control">
-                            @foreach ($waste_order->user->addresses as $address)
+                            @foreach ($order->user->addresses as $address)
                                 <option value="{{$address->id}}">{{$address->title}}</option>
                             @endforeach
                         </select>
@@ -82,7 +82,7 @@
                 format: 'YYYY/MM/DD',
                 altField: '#delivery_date',
                 observer: false,
-                initialValue: {{$waste_order->delivery_date != null ? 'true' : 'false'}},
+                initialValue: {{$order->delivery_date != null ? 'true' : 'false'}},
                 timePicker: {
                     enabled : true,
                     step : 1,

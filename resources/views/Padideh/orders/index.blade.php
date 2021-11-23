@@ -49,8 +49,7 @@
                                                 <button type="button"
                                                     data-id={{$order->id}}
                                                     data-code="{{$order->code}}"
-                                                    data-route="{{route('panel.orders.change_status',$order->id)}}"
-                                                    data-update="{{route('panel.orders.cancel_status',$order->id)}}"
+                                                    data-update="{{route('panel.orders.changeStatus',$order->id)}}"
                                                     class="btn btn-warning btn-sm btn-cancel" data-toggle="modal" data-target="#exampleModal">
                                                     لغو سفارش
                                                 </button>
@@ -83,7 +82,7 @@
         </div>
         <div class="modal-body ">
           <form action="" class="modal-form" name="change_status" method="post">
-              @method('put')
+              @method('patch')
               @csrf
                 <div class="col-12 col-lg-12 form-group">
                     <label for="status_id">وضعیت</label>

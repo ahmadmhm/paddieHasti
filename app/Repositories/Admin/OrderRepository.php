@@ -21,50 +21,56 @@ class OrderRepository {
         ]);
     }
 
-    public function show($waste_order)
+    public function show($waste)
     {
-       $waste_order=$waste_order->with('orders')->first();
+       $waste=$waste->with('orders')->first();
         return view('Padideh.orders.show')->with([
-            'waste_order' => $waste_order
+            'waste' => $waste
         ]);
     }
 
 
-    public function edit($waste_order)
+    public function edit($order)
     {
-       $waste_order=$waste_order->with('orders')->first();
+       $order=$order->with('orders')->first();
        $drivers = Driver::all();
        $statuses = OrderStatus::all();
         return view('Padideh.orders.edit')->with([
-            'waste_order' => $waste_order,
+            'order' => $order,
             'drivers' => $drivers,
             'statuses' => $statuses,
         ]);
     }
 
-    public function update($request,$waste_order)
+    public function update($request,$order)
     {
-        $waste_order->update([
+        $order->update([
             'address_id' => $request->address_id,
             'driver_id' => $request->driver_id,
-            'delivery_date' => Carbon::createFromTimestampMs($request->delivery_date)  ?: $waste_order->delivery_date ,
+            'delivery_date' => Carbon::createFromTimestampMs($request->delivery_date)  ?: $order->delivery_date ,
             'admin_id' => Auth::id() ,
         ]);
 
-        event(new WasteOrderUpdated($waste_order,$request->status_id));
+        if($order->status_id != $request->status_id)
+        {
+            $order->update([
+                'status_id' => $request->status_id
+            ]);
+            event(new WasteOrderUpdated($order,$request->status_id));
+        }
 
-        return $waste_order;
+        return $order;
     }
 
 
-    public function watting_confirm()
+    public function confirmation()
     {
-        $waste_orders = WasteOrderHead::with(['user','status','address','admin'])
+        $wasteOrders = WasteOrderHead::with(['user','status','address','admin'])
                 ->whereHas('status',function($q){
                     $q->step(1);
                 })->latest()->paginate(20);
 
-                return $waste_orders;
+                return $wasteOrders;
     }
 
     public function process()
@@ -85,16 +91,19 @@ class OrderRepository {
 
     }
 
-
-    public function cancel($request ,$waste_order)
+    public function changeStatus($request ,$order)
     {
-        $waste_order->update([
-            'status_id' => $request->status
-        ]);
-
-        return $waste_order;
+        if($order->status_id != $request->status_id)
+        {
+            $order->update([
+                'status_id' => $request->status_id
+            ]);
+            event(new WasteOrderUpdated($order,$request->status_id));
+        }
+        return $order;
     }
 
+    
 
 
 
@@ -145,18 +154,14 @@ class OrderRepository {
         $orderHead->orders()->insert($inserts);
         return $orderHead;
     }
-
-
-    public function cancelStatus($request ,$orderHead)
+    
+    public function cancelOrderHead($order)
     {
-        event(new WasteOrderUpdated($orderHead,$request->status_id));
-        return $orderHead;
-    }
-
-    public function cancelOrderHead($orderHead)
-    {
-        event(new WasteOrderUpdated($orderHead,7));
-        return $orderHead;
+        $order->update([
+            'status_id' => $order->status
+        ]);
+        event(new WasteOrderUpdated($order,7));
+        return $order;
     }
 
 
