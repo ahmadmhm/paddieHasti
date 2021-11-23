@@ -37,7 +37,7 @@ class LoginDriverController extends Controller
     public function login(Request $request)
     {
         if ($uvCode = UserVerificationCode::codeValidate($request->mobile,$request->code)){
-            $driver = $this->userWithMobileExists($request->mobile);
+            $driver = $this->driverWithMobileExists($request->mobile);
             if (!$driver) {
                 $driver = Driver::create([
                     'mobile' => $request->mobile,
@@ -65,7 +65,7 @@ class LoginDriverController extends Controller
     {
         if ($uvCode = UserVerificationCode::codeValidate($request->mobile,$request->code)){
 
-            if (!$driver = $this->userWithMobileExists($request->mobile)){
+            if (!$driver = $this->driverWithMobileExists($request->mobile)){
 
                 $driver = Driver::create([
                     'first_name' => $request->name,

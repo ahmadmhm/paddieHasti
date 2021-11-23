@@ -50,8 +50,8 @@
                 <li>
                     <a href="javascript:void(0);" class="waves-effect"><i class="dripicons-to-do"></i><span> رانندگان <span class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span> </span></a>
                     <ul class="submenu">
-                        <li><a href="{{route('panel.drivers.index')}}">لیست راننده ها</a></li>
-                        <li><a href="{{route('panel.driver_status.index')}}">وضعیت </a></li>
+                        <li><a href="{{route('panel.drivers.lists.index')}}">لیست راننده ها</a></li>
+                        <li><a href="{{route('panel.drivers.statuses.index')}}">وضعیت </a></li>
                     </ul>
                 </li>
 

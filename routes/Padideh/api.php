@@ -54,7 +54,7 @@ Route::group(['prefix' => '/V1/', 'namespace' => 'Padideh\Api', 'name' => 'padid
         Route::apiResource('addresses','AddressController');
 
         //orders
-        Route::post('orders/{order}/cancel','OrderController@cancelOrder');
+        Route::put('orders/{order}/cancel','OrderController@cancelOrder');
         Route::apiResource('orders','OrderController');
 
 
