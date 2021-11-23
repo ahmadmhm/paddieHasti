@@ -24,14 +24,14 @@
                                    <th></th>
                                </thead>
                                <tbody>
-                                   @foreach ($driver_statuses as $key=>$status)
+                                   @foreach ($driverStatuses as $key=>$status)
                                         <tr>
                                             <td>{{$key+1}}</td>
                                             <td>{{$status->title}}</td>
                                             <td>{{$status->step}}</td>
                                             <td>{{$status->description }}</td>
                                             <td>
-                                                <form action="{{route('panel.driver_status.destroy',$status->id)}}" method="post">
+                                                <form action="{{route('panel.drivers.statuses.destroy',$status->id)}}" method="post">
                                                     @csrf
                                                     @method('delete')
                                                     <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('آیا مایل به حذف هستید؟')" ><i class="ion-ios-trash"></i></button>
@@ -55,13 +55,13 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <h5 class="modal-title" id="exampleModalLabel">ثبت وضعیت جدید</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
-            <form action="{{route('panel.driver_status.store')}}" enctype="multipart/form-data" method="post">
+            <form action="{{route('panel.drivers.statuses.store')}}" enctype="multipart/form-data" method="post">
                 @csrf
                 <div class="row">
                     <div class="col-12">

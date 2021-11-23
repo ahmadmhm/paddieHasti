@@ -19,9 +19,9 @@ class DriverStatusController extends Controller
 
     public function index()
     {
-        $driver_statuses =  $this->driverStatusRepository->index();
-        return view('Padideh.driver_statuses.index')->with([
-            'driver_statuses' => $driver_statuses
+        $driverStatuses =  $this->driverStatusRepository->index();
+        return view('Padideh.driver-statuses.index')->with([
+            'driverStatuses' => $driverStatuses
         ]);
     }
 
@@ -30,8 +30,8 @@ class DriverStatusController extends Controller
     
     public function store(Request $request)
     {
-        $driver_status = $this->driverStatusRepository->store($request);
-        if($driver_status)
+        $driverStatus = $this->driverStatusRepository->store($request);
+        if($driverStatus)
         {
             return \redirect()->back()->with([
                 'success' => 'با موفقیت ثبت شد'
@@ -43,9 +43,9 @@ class DriverStatusController extends Controller
     
 
   
-    public function destroy(DriverStatus $driver_status)
+    public function destroy(DriverStatus $status)
     {
-        $result =  $this->driverStatusRepository->destroy($driver_status);
+        $result =  $this->driverStatusRepository->destroy($status);
 
         if($result)
         {
